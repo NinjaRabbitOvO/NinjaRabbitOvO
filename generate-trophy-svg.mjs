@@ -9,11 +9,11 @@ const updateReadme = (process.env.UPDATE_README || 'true').toLowerCase() === 'tr
 const animate = (process.env.ANIMATE || 'true').toLowerCase() === 'true';
 const startDate = process.env.START_DATE || new Date(Date.now() - 365 * 24 * 3600 * 1000).toISOString();
 const endDate = process.env.END_DATE || new Date().toISOString();
-const titleText = process.env.TROPHY_TITLE || 'Contribution Trophy';
+const titleText = process.env.TROPHY_TITLE || '🏆 Contribution Trophy';
 const showStreak = (process.env.SHOW_STREAK || 'true').toLowerCase() === 'true';
 const showStats = (process.env.SHOW_STATS || 'true').toLowerCase() === 'true';
 const readmeCentered = (process.env.README_CENTER || 'true').toLowerCase() === 'true';
-const showInternalTitle = (process.env.SHOW_INTERNAL_TITLE || 'false').toLowerCase() === 'true';
+const showInternalTitle = (process.env.SHOW_INTERNAL_TITLE || 'true').toLowerCase() === 'true';
 
 if (!username) {
   console.error('Missing GITHUB_USERNAME env var.');
@@ -209,6 +209,14 @@ function getIntensityFill(d) {
   return d.color || '#39d353';
 }
 
+function pill(x, y, width, text, color) {
+  return `
+    <g>
+      <rect x="${x}" y="${y}" width="${width}" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
+      <text x="${x + 14}" y="${y + 20}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${color}">${escapeXml(text)}</text>
+    </g>`;
+}
+
 function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const award = getAward(activeDaysCount);
   const weeksCount = Math.max(53, Math.ceil(days.length / 7));
@@ -216,12 +224,13 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const gap = 3;
   const pitch = cell + gap;
   const gridX = 24;
-  const gridY = 56;
+  const gridY = 62;
   const width = 840;
-  const height = 304;
+  const height = 296;
   const labelX = gridX + 8 * pitch;
-  const badgeY = 192;
-  const cardY = 230;
+  const topTextY = 108;
+  const metaRowY = 176;
+  const cardY = 226;
   const cardHeight = 50;
 
   const rects = [];
@@ -257,21 +266,18 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
   const legend = award
     ? `
-    <text x="${labelX}" y="100" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
-    <text x="${labelX}" y="138" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
+    <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX}" y="${topTextY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
     : `
-    <text x="${labelX}" y="102" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
-    <text x="${labelX}" y="134" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
+    <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
+    <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
 
-  const streakGroup = showStreak
-    ? `
-    <g>
-      <rect x="${labelX}" y="${badgeY}" width="148" height="28" rx="14" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${labelX + 16}" y="${badgeY + 19}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.streak[1]}">🔥 ${stats.current} day streak</text>
-      <rect x="${labelX + 162}" y="${badgeY}" width="166" height="28" rx="14" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${labelX + 178}" y="${badgeY + 19}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.accent}">⚡ longest ${stats.longest} days</text>
-    </g>`
-    : '';
+  const pills = [];
+  pills.push(pill(labelX, metaRowY, 198, '7=Bronze · 30=Silver · 90=Gold · 180=Diamond', themeColors.subtext));
+  if (showStreak) {
+    pills.push(pill(labelX + 214, metaRowY, 146, `🔥 ${stats.current} day streak`, themeColors.streak[1]));
+    pills.push(pill(labelX + 376, metaRowY, 162, `⚡ longest ${stats.longest} days`, themeColors.accent));
+  }
 
   const statCards = showStats
     ? `
@@ -308,10 +314,14 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 710} ${gridY + 66}) scale(0.4)" fill="${themeColors.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="1.2s" repeatCount="indefinite" />
       </path>
+      <text x="24" y="32" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.glow}">
+        ${escapeXml(showInternalTitle ? '🏆' : '')}
+        ${animate ? `<animate attributeName="opacity" values="0.78;1;0.78" dur="2.2s" repeatCount="indefinite" />` : ''}
+      </text>
     </g>` : '';
 
   const header = showInternalTitle ? `
-  <text x="24" y="30" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
+  <text x="24" y="30" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
   <text x="24" y="48" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>` : `
   <text x="24" y="30" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>`;
 
@@ -360,9 +370,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     ${overlay.join('\n    ')}
   </g>
   ${legend}
-  <text x="${labelX}" y="164" font-family="Verdana,Segoe UI,Arial" font-size="14" fill="${themeColors.text}">${activeDaysCount} active day${activeDaysCount === 1 ? '' : 's'} in the last 365 days</text>
-  <text x="${labelX}" y="180" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">7=Bronze · 30=Silver · 90=Gold · 180=Diamond</text>
-  ${streakGroup}
+  <g>
+    ${pills.join('\n')}
+  </g>
   ${statCards}
   ${sparkle}
 </svg>`;
