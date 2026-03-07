@@ -23,7 +23,7 @@ jobs:
       - name: Generate SVG
         env:
           GITHUB_USERNAME: ${{ github.repository_owner }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           OUTPUT_FILE: assets/contribution-trophy.svg
           README_FILE: README.md
           UPDATE_README: 'true'
