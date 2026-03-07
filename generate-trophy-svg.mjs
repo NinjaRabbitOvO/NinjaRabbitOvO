@@ -209,11 +209,36 @@ function getIntensityFill(d) {
   return d.color || '#39d353';
 }
 
+function estimatePillWidth(text, fontSize = 12, horizontalPadding = 28) {
+  const s = String(text);
+
+  let units = 0;
+  for (const ch of s) {
+    if (ch === ' ') units += 0.35;
+    else if ('🥉🥈🥇💎🔥⚡'.includes(ch)) units += 1.35;
+    else if ('≥=·:-'.includes(ch)) units += 0.55;
+    else if (/[0-9]/.test(ch)) units += 0.72;
+    else if (/[A-Z]/.test(ch)) units += 0.82;
+    else if (/[a-z]/.test(ch)) units += 0.68;
+    else units += 0.75;
+  }
+
+  return Math.ceil(units * fontSize + horizontalPadding * 2);
+}
+
 function pill(x, y, width, text, color) {
   return `
     <g>
       <rect x="${x}" y="${y}" width="${width}" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${x + 14}" y="${y + 20}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${color}">${escapeXml(text)}</text>
+      <text
+        x="${x + width / 2}"
+        y="${y + 20}"
+        text-anchor="middle"
+        font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
+        font-size="12"
+        font-weight="700"
+        fill="${color}"
+      >${escapeXml(text)}</text>
     </g>`;
 }
 
@@ -273,16 +298,32 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
 
   const pills = [];
+
+  const ruleText = '🥉≥7 · 🥈≥30 · 🥇≥90 · 💎≥180';
+  const currentText = `🔥 ${stats.current} Day Streak`;
+  const longestText = `⚡ Longest ${stats.longest} Days`;
+
   const pillGap = 14;
-  const pillAreaWidth = 538; // 与当前中部内容区宽度匹配
-  const pillWidth = Math.floor((pillAreaWidth - pillGap * 2) / 3);
+
+  const ruleWidth = estimatePillWidth(ruleText, 12, 18);
+  const currentWidth = estimatePillWidth(currentText, 12, 18);
+  const longestWidth = estimatePillWidth(longestText, 12, 18);
+
+  const totalPillWidth = ruleWidth + currentWidth + longestWidth + pillGap * 2;
+
+  // 让三枚胶囊相对中部内容区居中
+  const pillAreaCenter = labelX + 270;
+  const pillStartX = Math.round(pillAreaCenter - totalPillWidth / 2);
+
+  const pill2X = pillStartX + ruleWidth + pillGap;
+  const pill3X = pill2X + currentWidth + pillGap;
 
   pills.push(
     pill(
-      labelX,
+      pillStartX,
       metaRowY,
-      pillWidth,
-      'Bronze≥7 · Silver≥30 · Gold≥90 · Diamond≥180',
+      ruleWidth,
+      ruleText,
       themeColors.subtext
     )
   );
@@ -290,20 +331,20 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   if (showStreak) {
     pills.push(
       pill(
-        labelX + pillWidth + pillGap,
+        pill2X,
         metaRowY,
-        pillWidth,
-        `🔥 ${stats.current} day streak`,
+        currentWidth,
+        currentText,
         themeColors.streak[1]
       )
     );
 
     pills.push(
       pill(
-        labelX + (pillWidth + pillGap) * 2,
+        pill3X,
         metaRowY,
-        pillWidth,
-        `⚡ longest ${stats.longest} days`,
+        longestWidth,
+        longestText,
         themeColors.accent
       )
     );
