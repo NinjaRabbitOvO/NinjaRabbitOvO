@@ -13,6 +13,7 @@ const titleText = process.env.TROPHY_TITLE || 'Contribution Trophy';
 const showStreak = (process.env.SHOW_STREAK || 'true').toLowerCase() === 'true';
 const showStats = (process.env.SHOW_STATS || 'true').toLowerCase() === 'true';
 const readmeCentered = (process.env.README_CENTER || 'true').toLowerCase() === 'true';
+const showInternalTitle = (process.env.SHOW_INTERNAL_TITLE || 'false').toLowerCase() === 'true';
 
 if (!username) {
   console.error('Missing GITHUB_USERNAME env var.');
@@ -215,10 +216,13 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const gap = 3;
   const pitch = cell + gap;
   const gridX = 24;
-  const gridY = 54;
-  const gridW = weeksCount * pitch;
+  const gridY = 56;
   const width = 840;
-  const height = 270;
+  const height = 304;
+  const labelX = gridX + 8 * pitch;
+  const badgeY = 192;
+  const cardY = 230;
+  const cardHeight = 50;
 
   const rects = [];
   const overlay = [];
@@ -251,46 +255,42 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     });
   }
 
-  const labelX = gridX + 8 * pitch;
-  const streakBadgeY = 186;
-  const cardY = 206;
-
   const legend = award
     ? `
-    <text x="${labelX}" y="96" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
-    <text x="${labelX}" y="134" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
+    <text x="${labelX}" y="100" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX}" y="138" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
     : `
-    <text x="${labelX}" y="100" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
-    <text x="${labelX}" y="132" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
+    <text x="${labelX}" y="102" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
+    <text x="${labelX}" y="134" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
 
   const streakGroup = showStreak
     ? `
     <g>
-      <rect x="${labelX}" y="${streakBadgeY}" width="152" height="26" rx="13" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${labelX + 14}" y="${streakBadgeY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.streak[1]}">🔥 ${stats.current} day streak</text>
-      <rect x="${labelX + 166}" y="${streakBadgeY}" width="168" height="26" rx="13" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${labelX + 180}" y="${streakBadgeY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.accent}">⚡ longest ${stats.longest} days</text>
+      <rect x="${labelX}" y="${badgeY}" width="148" height="28" rx="14" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
+      <text x="${labelX + 16}" y="${badgeY + 19}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.streak[1]}">🔥 ${stats.current} day streak</text>
+      <rect x="${labelX + 162}" y="${badgeY}" width="166" height="28" rx="14" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
+      <text x="${labelX + 178}" y="${badgeY + 19}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.accent}">⚡ longest ${stats.longest} days</text>
     </g>`
     : '';
 
   const statCards = showStats
     ? `
     <g>
-      <rect x="24" y="${cardY}" width="184" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="40" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
-      <text x="40" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
+      <rect x="24" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="40" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
+      <text x="40" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
 
-      <rect x="220" y="${cardY}" width="184" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="236" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
-      <text x="236" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
+      <rect x="220" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="236" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
+      <text x="236" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
 
-      <rect x="416" y="${cardY}" width="184" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="432" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
-      <text x="432" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? `${award.label1}` : 'Unranked'}</text>
+      <rect x="416" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="432" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
+      <text x="432" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? award.label1 : 'Unranked'}</text>
 
-      <rect x="612" y="${cardY}" width="204" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="628" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
-      <text x="628" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
+      <rect x="612" y="${cardY}" width="204" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="628" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
+      <text x="628" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
     </g>`
     : '';
 
@@ -309,6 +309,11 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="1.2s" repeatCount="indefinite" />
       </path>
     </g>` : '';
+
+  const header = showInternalTitle ? `
+  <text x="24" y="30" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
+  <text x="24" y="48" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>` : `
+  <text x="24" y="30" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>`;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
@@ -349,15 +354,14 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     </filter>
   </defs>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
-  <text x="24" y="28" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
-  <text x="24" y="46" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>
+  ${header}
   <g filter="url(#softGlow)">
     ${rects.join('\n    ')}
     ${overlay.join('\n    ')}
   </g>
   ${legend}
-  <text x="${labelX}" y="160" font-family="Verdana,Segoe UI,Arial" font-size="14" fill="${themeColors.text}">${activeDaysCount} active day${activeDaysCount === 1 ? '' : 's'} in the last 365 days</text>
-  <text x="${labelX}" y="176" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">7=Bronze · 30=Silver · 90=Gold · 180=Diamond</text>
+  <text x="${labelX}" y="164" font-family="Verdana,Segoe UI,Arial" font-size="14" fill="${themeColors.text}">${activeDaysCount} active day${activeDaysCount === 1 ? '' : 's'} in the last 365 days</text>
+  <text x="${labelX}" y="180" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">7=Bronze · 30=Silver · 90=Gold · 180=Diamond</text>
   ${streakGroup}
   ${statCards}
   ${sparkle}
