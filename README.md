@@ -18,8 +18,10 @@ Here are some ideas to get you started:
 
 
 <!-- TROPHY-SVG-START -->
-## 🏆 Contribution Trophy
+## Contribution Trophy
 
-<img src="assets/contribution-trophy.svg" alt="NinjaRabbitOvO contribution trophy" />
+<p align="center">
+  <img src="assets/contribution-trophy.svg" alt="NinjaRabbitOvO contribution trophy" />
+</p>
 
 <!-- TROPHY-SVG-END -->
