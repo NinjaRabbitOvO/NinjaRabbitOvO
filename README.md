@@ -1,8 +1,6 @@
 ## Hi there 👋
 
 Welcome to my GitHub profile.
-
-## 🏆 Contribution Trophy
 <!--
 **NinjaRabbitOvO/NinjaRabbitOvO** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -20,7 +18,7 @@ Here are some ideas to get you started:
 
 
 <!-- TROPHY-SVG-START -->
-## Contribution Trophy
+## 🏆 Contribution Trophy
 
 <img src="assets/contribution-trophy.svg" alt="NinjaRabbitOvO contribution trophy" />
 
