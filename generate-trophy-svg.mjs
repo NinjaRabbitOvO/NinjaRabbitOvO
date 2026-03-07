@@ -273,10 +273,40 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
 
   const pills = [];
-  pills.push(pill(labelX, metaRowY, 198, '7=Bronze · 30=Silver · 90=Gold · 180=Diamond', themeColors.subtext));
+  const pillGap = 14;
+  const pillAreaWidth = 538; // 与当前中部内容区宽度匹配
+  const pillWidth = Math.floor((pillAreaWidth - pillGap * 2) / 3);
+
+  pills.push(
+    pill(
+      labelX,
+      metaRowY,
+      pillWidth,
+      'Bronze≥7 · Silver≥30 · Gold≥90 · Diamond≥180',
+      themeColors.subtext
+    )
+  );
+
   if (showStreak) {
-    pills.push(pill(labelX + 214, metaRowY, 146, `🔥 ${stats.current} day streak`, themeColors.streak[1]));
-    pills.push(pill(labelX + 376, metaRowY, 162, `⚡ longest ${stats.longest} days`, themeColors.accent));
+    pills.push(
+      pill(
+        labelX + pillWidth + pillGap,
+        metaRowY,
+        pillWidth,
+        `🔥 ${stats.current} day streak`,
+        themeColors.streak[1]
+      )
+    );
+
+    pills.push(
+      pill(
+        labelX + (pillWidth + pillGap) * 2,
+        metaRowY,
+        pillWidth,
+        `⚡ longest ${stats.longest} days`,
+        themeColors.accent
+      )
+    );
   }
 
   const statCards = showStats
