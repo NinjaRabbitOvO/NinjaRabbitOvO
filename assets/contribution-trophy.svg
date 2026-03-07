@@ -456,9 +456,9 @@
   <g>
     
     <g>
-      <rect x="136" y="176" width="172" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="112" y="176" width="242" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="222"
+        x="233"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
@@ -469,29 +469,29 @@
     </g>
 
     <g>
-      <rect x="320" y="176" width="172" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="368" y="176" width="151" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="406"
+        x="443.5"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
         font-size="12"
         font-weight="700"
         fill="#ff7b72"
-      >🔥 7 day streak</text>
+      >🔥 7 Day Streak</text>
     </g>
 
     <g>
-      <rect x="504" y="176" width="172" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="533" y="176" width="167" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="590"
+        x="616.5"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
         font-size="12"
         font-weight="700"
         fill="#58a6ff"
-      >⚡ longest 7 days</text>
+      >⚡ Longest 7 Days</text>
     </g>
   </g>
   
