@@ -14,3 +14,11 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+
+<!-- TROPHY-SVG-START -->
+## Contribution Trophy
+
+<img src="assets/contribution-trophy.svg" alt="NinjaRabbitOvO contribution trophy" />
+
+<!-- TROPHY-SVG-END -->
