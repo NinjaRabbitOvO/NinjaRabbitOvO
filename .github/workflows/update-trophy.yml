@@ -32,7 +32,6 @@ jobs:
           SHOW_STREAK: 'true'
           SHOW_STATS: 'true'
           TROPHY_THEME: default
-          TROPHY_TITLE: Contribution Trophy
         run: node generate-trophy-svg.mjs
 
       - name: Commit changes
