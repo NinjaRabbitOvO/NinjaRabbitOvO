@@ -59,6 +59,7 @@ const THEMES = {
     flame3: '#ffd166',
     pillBg: '#101826',
     statBg: '#0f1623',
+    streakBlue: '#58a6ff',
   },
   light: {
     bg: '#ffffff',
@@ -91,6 +92,7 @@ const THEMES = {
     flame3: '#ffd166',
     pillBg: '#ffffff',
     statBg: '#ffffff',
+    streakBlue: '#0969da',
   },
   emerald: {
     bg: '#08140f',
@@ -123,6 +125,7 @@ const THEMES = {
     flame3: '#ffd166',
     pillBg: '#0d2018',
     statBg: '#0d2018',
+    streakBlue: '#7ee787',
   }
 };
 
@@ -135,10 +138,6 @@ function esc(text) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;');
-}
-
-function formatDate(d) {
-  return new Date(d).toISOString().slice(0, 10);
 }
 
 async function fetchContributionDays() {
@@ -226,18 +225,10 @@ function computeStats(days) {
 }
 
 function getAward(activeDays) {
-  if (activeDays >= 180) {
-    return { tier: 'Diamond', colors: [C.diamond1, C.diamond2, C.diamond3] };
-  }
-  if (activeDays >= 90) {
-    return { tier: 'Gold', colors: [C.gold1, C.gold2, C.gold3] };
-  }
-  if (activeDays >= 30) {
-    return { tier: 'Silver', colors: [C.silver1, C.silver2, C.silver3] };
-  }
-  if (activeDays >= 7) {
-    return { tier: 'Bronze', colors: [C.bronze1, C.bronze2, C.bronze3] };
-  }
+  if (activeDays >= 180) return { tier: 'Diamond', colors: [C.diamond1, C.diamond2, C.diamond3] };
+  if (activeDays >= 90) return { tier: 'Gold', colors: [C.gold1, C.gold2, C.gold3] };
+  if (activeDays >= 30) return { tier: 'Silver', colors: [C.silver1, C.silver2, C.silver3] };
+  if (activeDays >= 7) return { tier: 'Bronze', colors: [C.bronze1, C.bronze2, C.bronze3] };
   return { tier: 'Starter', colors: [C.green1, C.green3, C.green4] };
 }
 
@@ -254,18 +245,6 @@ function trophyCells() {
     [3,8],
     [2,9],[3,9],[4,9],
     [1,10],[2,10],[3,10],[4,10],[5,10]
-  ];
-}
-
-function flameCells() {
-  return [
-    [3,0],
-    [2,1],[3,1],[4,1],
-    [1,2],[2,2],[3,2],[4,2],[5,2],
-    [0,3],[1,3],[2,3],[3,3],[4,3],[5,3],
-    [1,4],[2,4],[3,4],[4,4],[5,4],
-    [2,5],[3,5],[4,5],
-    [3,6]
   ];
 }
 
@@ -289,30 +268,23 @@ function contributionFill(count) {
   return C.green4;
 }
 
-function pixelRect(x, y, size, fill, opacity = 1, rx = 2) {
-  return `<rect x="${x}" y="${y}" width="${size}" height="${size}" rx="${rx}" fill="${fill}" opacity="${opacity}" />`;
-}
-
 function pixelCluster(cells, originX, originY, size, colors, glowId = '') {
   let out = '';
   for (const [cx, cy] of cells) {
-    const fill =
-      cy < 2 ? colors[2] :
-      cy < 5 ? colors[1] :
-      colors[0];
+    const fill = cy < 2 ? colors[2] : cy < 5 ? colors[1] : colors[0];
     out += `<rect x="${originX + cx * size}" y="${originY + cy * size}" width="${size - 2}" height="${size - 2}" rx="2" fill="${fill}" ${glowId ? `filter="url(#${glowId})"` : ''}/>`;
   }
   return out;
 }
 
 function pill({ x, y, w, h, icon, text, accent }) {
-  const iconText = icon ? `<text x="${x + 16}" y="${y + 22}" font-size="13" fill="${accent}" dominant-baseline="middle">${esc(icon)}</text>` : '';
-  const textX = icon ? x + 32 : x + 16;
+  const iconText = icon ? `<text x="${x + 16}" y="${y + 18}" font-size="12" fill="${accent}" dominant-baseline="middle">${esc(icon)}</text>` : '';
+  const textX = icon ? x + 32 : x + 12;
   return `
     <g>
       <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h / 2}" fill="${C.pillBg}" stroke="${C.border}" />
       ${iconText}
-      <text x="${textX}" y="${y + 22}" font-size="12.5" font-weight="700" fill="${accent}" dominant-baseline="middle">${esc(text)}</text>
+      <text x="${textX}" y="${y + 18}" font-size="11.5" font-weight="700" fill="${accent}" dominant-baseline="middle">${esc(text)}</text>
     </g>
   `;
 }
@@ -329,75 +301,37 @@ function statCard({ x, y, w, h, label, value, valueColor = C.text }) {
 
 function buildSvg(days, totalContributions, stats, award) {
   const width = 820;
-  const height = 292;
+  const height = 320;
 
   const outerX = 10;
   const outerY = 10;
   const outerW = 800;
-  const outerH = 272;
+  const outerH = 300;
 
-  const topInfoY = 38;
   const titleY = 30;
+  const topInfoY = 46;
 
   const gridX = 286;
-  const gridY = 62;
+  const gridY = 72;
   const cell = 12;
   const gap = 2;
   const stride = cell + gap;
 
-  const trophyX = 42;
-  const trophyY = 63;
+  const trophyX = 40;
+  const trophyY = 84;
   const trophySize = 14;
 
-  const awardTextX = 120;
-  const awardTextY1 = 112;
-  const awardTextY2 = 148;
+  const awardTextX = 130;
+  const awardTextY1 = 130;
+  const awardTextY2 = 166;
 
-  const middleRowY = 182;
-  const cardsY = 220;
+  const middleRowY = 206;
+  const cardsY = 248;
   const cardW = 178;
   const cardH = 48;
 
   const weeks = [];
   for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
-
-  const pills = [];
-  pills.push(
-    pill({
-      x: 136,
-      y: middleRowY,
-      w: 270,
-      h: 28,
-      icon: '',
-      text: '7=Bronze · 30=Silver · 90=Gold · 180=Diamond',
-      accent: C.subtext
-    })
-  );
-
-  if (showStreak) {
-    pills.push(
-      pill({
-        x: 418,
-        y: middleRowY,
-        w: 122,
-        h: 28,
-        icon: '🔥',
-        text: `${stats.currentStreak} day streak`,
-        accent: C.flame2
-      })
-    );
-    pills.push(
-      pill({
-        x: 550,
-        y: middleRowY,
-        w: 132,
-        h: 28,
-        icon: '⚡',
-        text: `longest ${stats.longestStreak} days`,
-        accent: '#58a6ff'
-      })
-    );
-  }
 
   let gridRects = '';
   weeks.forEach((week, wx) => {
@@ -411,10 +345,47 @@ function buildSvg(days, totalContributions, stats, award) {
   });
 
   const trophy = pixelCluster(trophyCells(), trophyX, trophyY, trophySize, award.colors, 'trophyGlow');
-  const flame = pixelCluster(flameCells(), 662, 86, 14, [C.flame1, C.flame2, C.flame3], 'flameGlow');
-  const diamond = pixelCluster(diamondCells(), 662, 86, 14, [C.flame1, C.flame2, C.flame3], 'flameGlow');
+  const rightBadge = pixelCluster(diamondCells(), 662, 96, 14, [C.flame1, C.flame2, C.flame3], 'flameGlow');
 
   const topLine = `${stats.activeDays} contribution days · ${totalContributions} total contributions · @${username}`;
+
+  const pills = [];
+  pills.push(
+    pill({
+      x: 128,
+      y: middleRowY,
+      w: 235,
+      h: 26,
+      icon: '',
+      text: '7=Bronze · 30=Silver · 90=Gold · 180=Diamond',
+      accent: C.subtext
+    })
+  );
+
+  if (showStreak) {
+    pills.push(
+      pill({
+        x: 377,
+        y: middleRowY,
+        w: 136,
+        h: 26,
+        icon: '🔥',
+        text: `${stats.currentStreak} day streak`,
+        accent: C.flame2
+      })
+    );
+    pills.push(
+      pill({
+        x: 526,
+        y: middleRowY,
+        w: 136,
+        h: 26,
+        icon: '⚡',
+        text: `longest ${stats.longestStreak} days`,
+        accent: C.streakBlue
+      })
+    );
+  }
 
   return `
 <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
@@ -440,7 +411,7 @@ function buildSvg(days, totalContributions, stats, award) {
       <feBlend in="SourceGraphic" mode="screen"/>
     </filter>
 
-    <linearGradient id="panelShine" x1="0" y1="0" x2="820" y2="292" gradientUnits="userSpaceOnUse">
+    <linearGradient id="panelShine" x1="0" y1="0" x2="820" y2="320" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="white" stop-opacity="0.04"/>
       <stop offset="1" stop-color="white" stop-opacity="0"/>
     </linearGradient>
@@ -450,13 +421,12 @@ function buildSvg(days, totalContributions, stats, award) {
   <rect x="${outerX}" y="${outerY}" width="${outerW}" height="${outerH}" rx="16" fill="${C.panel}" stroke="${C.border}" />
   <rect x="${outerX}" y="${outerY}" width="${outerW}" height="${outerH}" rx="16" fill="url(#panelShine)" />
 
-  <text x="30" y="${titleY}" font-size="16" font-weight="800" fill="${C.text}">${esc(titleText)}</text>
-  <text x="30" y="${topInfoY}" font-size="11.5" fill="${C.subtext}">${esc(topLine)}</text>
+  <text x="28" y="${titleY}" font-size="16" font-weight="800" fill="${C.text}">${esc(titleText)}</text>
+  <text x="28" y="${topInfoY}" font-size="11.5" fill="${C.subtext}">${esc(topLine)}</text>
 
   ${gridRects}
-
   ${trophy}
-  ${stats.currentStreak >= 7 ? flame : diamond}
+  ${rightBadge}
 
   <text x="${awardTextX}" y="${awardTextY1}" font-size="28" font-weight="900" fill="${award.colors[2]}" filter="url(#trophyGlow)">${esc(award.tier)}</text>
   <text x="${awardTextX}" y="${awardTextY2}" font-size="28" font-weight="900" fill="${award.colors[1]}" filter="url(#trophyGlow)">Award</text>
@@ -464,24 +434,24 @@ function buildSvg(days, totalContributions, stats, award) {
   ${pills.join('\n')}
 
   ${showStats ? `
-    ${statCard({ x: 30, y: cardsY, w: cardW, h: cardH, label: 'Active days', value: String(stats.activeDays) })}
-    ${statCard({ x: 220, y: cardsY, w: cardW, h: cardH, label: 'Total contributions', value: String(totalContributions) })}
-    ${statCard({ x: 410, y: cardsY, w: cardW, h: cardH, label: 'Current tier', value: award.tier, valueColor: award.colors[2] })}
-    ${statCard({ x: 600, y: cardsY, w: cardW, h: cardH, label: 'Last active', value: stats.latestActive || '--' })}
+    ${statCard({ x: 28, y: cardsY, w: cardW, h: cardH, label: 'Active days', value: String(stats.activeDays) })}
+    ${statCard({ x: 218, y: cardsY, w: cardW, h: cardH, label: 'Total contributions', value: String(totalContributions) })}
+    ${statCard({ x: 408, y: cardsY, w: cardW, h: cardH, label: 'Current tier', value: award.tier, valueColor: award.colors[2] })}
+    ${statCard({ x: 598, y: cardsY, w: cardW, h: cardH, label: 'Last active', value: stats.latestActive || '--' })}
   ` : ''}
 
   ${animate ? `
     <g opacity="0.95">
-      <rect x="88" y="92" width="4" height="4" rx="1" fill="${C.glow}">
+      <rect x="86" y="110" width="4" height="4" rx="1" fill="${C.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="2.2s" repeatCount="indefinite"/>
       </rect>
-      <rect x="95" y="99" width="3" height="3" rx="1" fill="${C.glow}">
+      <rect x="93" y="117" width="3" height="3" rx="1" fill="${C.glow}">
         <animate attributeName="opacity" values="0;0.8;0" dur="1.8s" begin="0.35s" repeatCount="indefinite"/>
       </rect>
-      <rect x="704" y="116" width="4" height="4" rx="1" fill="${C.glow}">
+      <rect x="704" y="126" width="4" height="4" rx="1" fill="${C.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="1.9s" begin="0.25s" repeatCount="indefinite"/>
       </rect>
-      <rect x="716" y="108" width="3" height="3" rx="1" fill="${C.glow}">
+      <rect x="716" y="118" width="3" height="3" rx="1" fill="${C.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
       </rect>
     </g>
@@ -502,7 +472,6 @@ function updateReadmeFile() {
     : `<img src="assets/contribution-trophy.svg" alt="${username} contribution trophy" />`;
 
   const block = `<!-- TROPHY-SVG-START -->\n## ${titleText}\n\n${imgTag}\n<!-- TROPHY-SVG-END -->`;
-
   const regex = /<!-- TROPHY-SVG-START -->[\s\S]*?<!-- TROPHY-SVG-END -->/m;
 
   if (regex.test(readme)) {
