@@ -23,4 +23,5 @@ Here are some ideas to get you started:
 <p align="center">
   <img src="assets/contribution-trophy.svg" alt="NinjaRabbitOvO contribution trophy" />
 </p>
+
 <!-- TROPHY-SVG-END -->
