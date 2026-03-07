@@ -213,7 +213,7 @@ function pill(x, y, width, text, color) {
   return `
     <g>
       <rect x="${x}" y="${y}" width="${width}" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${x + 14}" y="${y + 20}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${color}">${escapeXml(text)}</text>
+      <text x="${x + 14}" y="${y + 20}" font-family="Verdana,Segoe UI,Arial" font-size="11" font-weight="700" fill="${color}">${escapeXml(text)}</text>
     </g>`;
 }
 
