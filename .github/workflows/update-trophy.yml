@@ -27,8 +27,12 @@ jobs:
           OUTPUT_FILE: assets/contribution-trophy.svg
           README_FILE: README.md
           UPDATE_README: 'true'
+          README_CENTER: 'true'
           ANIMATE: 'true'
+          SHOW_STREAK: 'true'
+          SHOW_STATS: 'true'
           TROPHY_THEME: default
+          TROPHY_TITLE: Contribution Trophy
         run: node generate-trophy-svg.mjs
 
       - name: Commit changes
