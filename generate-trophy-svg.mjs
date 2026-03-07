@@ -213,7 +213,15 @@ function pill(x, y, width, text, color) {
   return `
     <g>
       <rect x="${x}" y="${y}" width="${width}" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-      <text x="${x + 14}" y="${y + 20}" font-family="Verdana,Segoe UI,Arial" font-size="11" font-weight="700" fill="${color}">${escapeXml(text)}</text>
+      <text
+        x="${x + width / 2}"
+        y="${y + 20}"
+        text-anchor="middle"
+        font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
+        font-size="12"
+        font-weight="700"
+        fill="${color}"
+      >${escapeXml(text)}</text>
     </g>`;
 }
 
@@ -273,16 +281,20 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
 
   const pills = [];
-  const pillGap = 14;
-  const pillAreaWidth = 538; // 与当前中部内容区宽度匹配
-  const pillWidth = Math.floor((pillAreaWidth - pillGap * 2) / 3);
+  const pillGap = 12;
+  const pill1Width = 172;
+  const pill2Width = 172;
+  const pill3Width = 172;
+  const pillStartX = labelX;
+  const pill2X = pillStartX + pill1Width + pillGap;
+  const pill3X = pill2X + pill2Width + pillGap;
 
   pills.push(
     pill(
-      labelX,
+      pillStartX,
       metaRowY,
-      pillWidth,
-      'Bronze≥7 · Silver≥30 · Gold≥90 · Diamond≥180',
+      pill1Width,
+      '🥉≥7 · 🥈≥30 · 🥇≥90 · 💎≥180',
       themeColors.subtext
     )
   );
@@ -290,9 +302,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   if (showStreak) {
     pills.push(
       pill(
-        labelX + pillWidth + pillGap,
+        pill2X,
         metaRowY,
-        pillWidth,
+        pill2Width,
         `🔥 ${stats.current} day streak`,
         themeColors.streak[1]
       )
@@ -300,9 +312,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
     pills.push(
       pill(
-        labelX + (pillWidth + pillGap) * 2,
+        pill3X,
         metaRowY,
-        pillWidth,
+        pill3Width,
         `⚡ longest ${stats.longest} days`,
         themeColors.accent
       )
