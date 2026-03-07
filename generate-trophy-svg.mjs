@@ -9,6 +9,10 @@ const updateReadme = (process.env.UPDATE_README || 'true').toLowerCase() === 'tr
 const animate = (process.env.ANIMATE || 'true').toLowerCase() === 'true';
 const startDate = process.env.START_DATE || new Date(Date.now() - 365 * 24 * 3600 * 1000).toISOString();
 const endDate = process.env.END_DATE || new Date().toISOString();
+const titleText = process.env.TROPHY_TITLE || 'Contribution Trophy';
+const showStreak = (process.env.SHOW_STREAK || 'true').toLowerCase() === 'true';
+const showStats = (process.env.SHOW_STATS || 'true').toLowerCase() === 'true';
+const readmeCentered = (process.env.README_CENTER || 'true').toLowerCase() === 'true';
 
 if (!username) {
   console.error('Missing GITHUB_USERNAME env var.');
@@ -24,10 +28,12 @@ const THEMES = {
     text: '#c9d1d9',
     subtext: '#8b949e',
     brass: ['#d9a441', '#b87333', '#8c5a2b'],
-    silver: ['#f2f4f8', '#b8c2cc', '#7d8793'],
+    silver: ['#f8fafc', '#cbd5e1', '#94a3b8'],
     gold: ['#ffd966', '#f4b400', '#b7791f'],
-    diamond: ['#dff6ff', '#7dd3fc', '#2563eb'],
-    glow: '#fff7cc'
+    diamond: ['#eefcff', '#7dd3fc', '#2563eb'],
+    accent: '#58a6ff',
+    glow: '#fff7cc',
+    streak: ['#ffb86b', '#ff7b72', '#ff4d4d']
   },
   light: {
     bg: '#ffffff',
@@ -37,10 +43,12 @@ const THEMES = {
     text: '#24292f',
     subtext: '#57606a',
     brass: ['#d9a441', '#b87333', '#8c5a2b'],
-    silver: ['#f2f4f8', '#b8c2cc', '#7d8793'],
+    silver: ['#f8fafc', '#dbe4ee', '#94a3b8'],
     gold: ['#ffd966', '#f4b400', '#b7791f'],
-    diamond: ['#dff6ff', '#7dd3fc', '#2563eb'],
-    glow: '#ffe58f'
+    diamond: ['#eefcff', '#7dd3fc', '#2563eb'],
+    accent: '#0969da',
+    glow: '#ffe58f',
+    streak: ['#ffb86b', '#ff7b72', '#d1242f']
   },
   emerald: {
     bg: '#051b11',
@@ -53,11 +61,40 @@ const THEMES = {
     silver: ['#f4f8fb', '#c6d2dc', '#8292a3'],
     gold: ['#ffe07a', '#f1b500', '#b7791f'],
     diamond: ['#e9fbff', '#8be3ff', '#2a88d8'],
-    glow: '#fff8cf'
+    accent: '#34d399',
+    glow: '#fff8cf',
+    streak: ['#ffd166', '#f97316', '#ef4444']
   }
 };
 
-const themeColors = THEMES[theme] || THEMES.default;
+const themeColors = applyOverrides(THEMES[theme] || THEMES.default);
+
+function applyOverrides(base) {
+  const clone = JSON.parse(JSON.stringify(base));
+  const map = [
+    ['empty', process.env.COLOR_EMPTY],
+    ['text', process.env.COLOR_TEXT],
+    ['subtext', process.env.COLOR_SUBTEXT],
+    ['border', process.env.COLOR_BORDER],
+    ['panel', process.env.COLOR_PANEL],
+    ['accent', process.env.COLOR_ACCENT],
+    ['glow', process.env.COLOR_GLOW]
+  ];
+  for (const [k, v] of map) if (v) clone[k] = v;
+  if (process.env.COLOR_BRONZE_1) clone.brass[0] = process.env.COLOR_BRONZE_1;
+  if (process.env.COLOR_BRONZE_2) clone.brass[1] = process.env.COLOR_BRONZE_2;
+  if (process.env.COLOR_BRONZE_3) clone.brass[2] = process.env.COLOR_BRONZE_3;
+  if (process.env.COLOR_SILVER_1) clone.silver[0] = process.env.COLOR_SILVER_1;
+  if (process.env.COLOR_SILVER_2) clone.silver[1] = process.env.COLOR_SILVER_2;
+  if (process.env.COLOR_SILVER_3) clone.silver[2] = process.env.COLOR_SILVER_3;
+  if (process.env.COLOR_GOLD_1) clone.gold[0] = process.env.COLOR_GOLD_1;
+  if (process.env.COLOR_GOLD_2) clone.gold[1] = process.env.COLOR_GOLD_2;
+  if (process.env.COLOR_GOLD_3) clone.gold[2] = process.env.COLOR_GOLD_3;
+  if (process.env.COLOR_DIAMOND_1) clone.diamond[0] = process.env.COLOR_DIAMOND_1;
+  if (process.env.COLOR_DIAMOND_2) clone.diamond[1] = process.env.COLOR_DIAMOND_2;
+  if (process.env.COLOR_DIAMOND_3) clone.diamond[2] = process.env.COLOR_DIAMOND_3;
+  return clone;
+}
 
 async function fetchContributionDays(login, authToken) {
   const endpoint = 'https://api.github.com/graphql';
@@ -106,7 +143,37 @@ async function fetchContributionDays(login, authToken) {
   const weeks = json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks || [];
   const days = weeks.flatMap(w => w.contributionDays);
   const activeDays = days.filter(d => d.contributionCount > 0);
-  return { days, activeDaysCount: activeDays.length };
+  const totalContributions = json?.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || 0;
+  return {
+    days,
+    activeDaysCount: activeDays.length,
+    totalContributions,
+    stats: computeStreakStats(days)
+  };
+}
+
+function computeStreakStats(days) {
+  const sorted = [...days].sort((a, b) => a.date.localeCompare(b.date));
+  let longest = 0;
+  let current = 0;
+  let running = 0;
+
+  for (const d of sorted) {
+    if (d.contributionCount > 0) {
+      running += 1;
+      if (running > longest) longest = running;
+    } else {
+      running = 0;
+    }
+  }
+
+  for (let i = sorted.length - 1; i >= 0; i -= 1) {
+    if (sorted[i].contributionCount > 0) current += 1;
+    else break;
+  }
+
+  const latestActive = [...sorted].reverse().find(d => d.contributionCount > 0)?.date || null;
+  return { current, longest, latestActive };
 }
 
 function getAward(activeDaysCount) {
@@ -129,27 +196,39 @@ function trophyCells() {
   ];
 }
 
-function renderSVG({ days, activeDaysCount }) {
+function flameCells() {
+  return [
+    [0,3],[1,2],[1,3],[1,4],[2,1],[2,2],[2,3],[2,4],[2,5],
+    [3,0],[3,1],[3,2],[3,3],[3,4],[4,1],[4,2],[4,3],[5,2]
+  ];
+}
+
+function getIntensityFill(d) {
+  if (!d || d.contributionCount <= 0) return themeColors.empty;
+  return d.color || '#39d353';
+}
+
+function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const award = getAward(activeDaysCount);
   const weeksCount = Math.max(53, Math.ceil(days.length / 7));
   const cell = 11;
   const gap = 3;
   const pitch = cell + gap;
   const gridX = 24;
-  const gridY = 40;
+  const gridY = 54;
   const gridW = weeksCount * pitch;
-  const gridH = 7 * pitch;
-  const width = 820;
-  const height = 220;
+  const width = 840;
+  const height = 270;
 
   const rects = [];
+  const overlay = [];
   let idx = 0;
   for (let wx = 0; wx < weeksCount; wx++) {
     for (let wy = 0; wy < 7; wy++) {
       const d = days[idx++] || null;
       const x = gridX + wx * pitch;
       const y = gridY + wy * pitch;
-      const fill = d && d.contributionCount > 0 ? (d.color || '#39d353') : themeColors.empty;
+      const fill = getIntensityFill(d);
       const opacity = d && d.contributionCount > 0 ? 1 : 0.95;
       const title = d ? `${d.date}: ${d.contributionCount} contribution(s)` : 'padding cell';
       rects.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="${fill}" opacity="${opacity}"><title>${escapeXml(title)}</title></rect>`);
@@ -157,44 +236,84 @@ function renderSVG({ days, activeDaysCount }) {
   }
 
   if (award) {
-    const cells = trophyCells();
-    cells.forEach(([cx, cy], i) => {
+    trophyCells().forEach(([cx, cy], i) => {
       const x = gridX + cx * pitch;
       const y = gridY + cy * pitch;
-      rects.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#${award.tier}Grad)">${animate ? `<animate attributeName="opacity" values="0.85;1;0.85" dur="2.4s" begin="${(i%5)*0.18}s" repeatCount="indefinite" />` : ''}</rect>`);
+      overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#${award.tier}Grad)">${animate ? `<animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="${(i % 5) * 0.16}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
   }
 
-  const sparkle = award && animate ? `
+  if (showStreak && stats.current >= 3) {
+    flameCells().forEach(([cx, cy], i) => {
+      const x = gridX + (weeksCount - 8 + cx) * pitch;
+      const y = gridY + cy * pitch;
+      overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#streakGrad)">${animate ? `<animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="${(i % 4) * 0.12}s" repeatCount="indefinite" />` : ''}</rect>`);
+    });
+  }
+
+  const labelX = gridX + 8 * pitch;
+  const streakBadgeY = 186;
+  const cardY = 206;
+
+  const legend = award
+    ? `
+    <text x="${labelX}" y="96" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX}" y="134" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
+    : `
+    <text x="${labelX}" y="100" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
+    <text x="${labelX}" y="132" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
+
+  const streakGroup = showStreak
+    ? `
+    <g>
+      <rect x="${labelX}" y="${streakBadgeY}" width="152" height="26" rx="13" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
+      <text x="${labelX + 14}" y="${streakBadgeY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.streak[1]}">🔥 ${stats.current} day streak</text>
+      <rect x="${labelX + 166}" y="${streakBadgeY}" width="168" height="26" rx="13" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
+      <text x="${labelX + 180}" y="${streakBadgeY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.accent}">⚡ longest ${stats.longest} days</text>
+    </g>`
+    : '';
+
+  const statCards = showStats
+    ? `
+    <g>
+      <rect x="24" y="${cardY}" width="184" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="40" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
+      <text x="40" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
+
+      <rect x="220" y="${cardY}" width="184" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="236" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
+      <text x="236" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
+
+      <rect x="416" y="${cardY}" width="184" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="432" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
+      <text x="432" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? `${award.label1}` : 'Unranked'}</text>
+
+      <rect x="612" y="${cardY}" width="204" height="42" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="628" y="${cardY + 17}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
+      <text x="628" y="${cardY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
+    </g>`
+    : '';
+
+  const sparkle = animate ? `
     <g opacity="0.9">
-      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 70} ${gridY + 16}) scale(0.65)" fill="${themeColors.glow}">
+      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 74} ${gridY + 20}) scale(0.65)" fill="${themeColors.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" />
       </path>
-      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 318} ${gridY + 104}) scale(0.45)" fill="${themeColors.glow}">
+      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 318} ${gridY + 110}) scale(0.45)" fill="${themeColors.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="2.1s" begin="0.45s" repeatCount="indefinite" />
       </path>
-      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 650} ${gridY + 42}) scale(0.55)" fill="${themeColors.glow}">
+      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 650} ${gridY + 48}) scale(0.55)" fill="${themeColors.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="1.6s" begin="0.9s" repeatCount="indefinite" />
+      </path>
+      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 710} ${gridY + 66}) scale(0.4)" fill="${themeColors.glow}">
+        <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="1.2s" repeatCount="indefinite" />
       </path>
     </g>` : '';
 
-  const labelX = gridX + 8 * pitch;
-  const tierText = award ? `${award.label1}\n${award.label2}` : 'Keep\nGoing';
-  const [label1, label2] = tierText.split('\n');
-  const fill1 = award ? award.accent[0] : themeColors.text;
-  const fill2 = award ? award.accent[1] : themeColors.subtext;
-
-  const legend = `
-    <text x="${labelX}" y="${gridY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${fill1}">${label1}</text>
-    <text x="${labelX}" y="${gridY + 76}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${fill2}">${label2}</text>
-    <text x="${labelX}" y="${gridY + 110}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.text}">${activeDaysCount} active contribution day${activeDaysCount === 1 ? '' : 's'} in the last year</text>
-    <text x="${labelX}" y="${gridY + 138}" font-family="Verdana,Segoe UI,Arial" font-size="13" fill="${themeColors.subtext}">7=Bronze · 30=Silver · 90=Gold · 180=Diamond</text>
-    <text x="${labelX}" y="${gridY + 160}" font-family="Verdana,Segoe UI,Arial" font-size="13" fill="${themeColors.subtext}">@${escapeXml(username)}</text>`;
-
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">GitHub contribution trophy for ${escapeXml(username)}</title>
-  <desc id="desc">Contribution heatmap with a trophy and award text based on active contribution days.</desc>
+  <desc id="desc">Contribution heatmap with a pixel trophy, streak stats, and award tier based on active contribution days.</desc>
   <defs>
     <linearGradient id="bronzeGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="${themeColors.brass[0]}" />
@@ -216,6 +335,11 @@ function renderSVG({ days, activeDaysCount }) {
       <stop offset="55%" stop-color="${themeColors.diamond[1]}" />
       <stop offset="100%" stop-color="${themeColors.diamond[2]}" />
     </linearGradient>
+    <linearGradient id="streakGrad" x1="0" y1="1" x2="0.8" y2="0">
+      <stop offset="0%" stop-color="${themeColors.streak[2]}" />
+      <stop offset="60%" stop-color="${themeColors.streak[1]}" />
+      <stop offset="100%" stop-color="${themeColors.streak[0]}" />
+    </linearGradient>
     <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="3.5" result="blur" />
       <feMerge>
@@ -224,16 +348,20 @@ function renderSVG({ days, activeDaysCount }) {
       </feMerge>
     </filter>
   </defs>
-  <rect x="0.5" y="0.5" width="${width-1}" height="${height-1}" rx="14" fill="${themeColors.panel}" stroke="${themeColors.border}" />
-  <text x="24" y="24" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="600" fill="${themeColors.text}">${activeDaysCount} contribution days in the last year</text>
+  <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
+  <text x="24" y="28" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
+  <text x="24" y="46" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>
   <g filter="url(#softGlow)">
     ${rects.join('\n    ')}
+    ${overlay.join('\n    ')}
   </g>
   ${legend}
+  <text x="${labelX}" y="160" font-family="Verdana,Segoe UI,Arial" font-size="14" fill="${themeColors.text}">${activeDaysCount} active day${activeDaysCount === 1 ? '' : 's'} in the last 365 days</text>
+  <text x="${labelX}" y="176" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">7=Bronze · 30=Silver · 90=Gold · 180=Diamond</text>
+  ${streakGroup}
+  ${statCards}
   ${sparkle}
 </svg>`;
-
-  return svg;
 }
 
 function escapeXml(s) {
@@ -248,8 +376,8 @@ function escapeXml(s) {
 async function main() {
   const fs = await import('node:fs/promises');
   const path = await import('node:path');
-  const { days, activeDaysCount } = await fetchContributionDays(username, token);
-  const svg = renderSVG({ days, activeDaysCount });
+  const { days, activeDaysCount, totalContributions, stats } = await fetchContributionDays(username, token);
+  const svg = renderSVG({ days, activeDaysCount, totalContributions, stats });
 
   await fs.mkdir(path.dirname(outFile), { recursive: true });
   await fs.writeFile(outFile, svg, 'utf8');
@@ -263,7 +391,11 @@ async function main() {
     }
 
     const relPath = path.relative(path.dirname(readmeFile), outFile).replace(/\\/g, '/');
-    const block = `<!-- TROPHY-SVG-START -->\n## Contribution Trophy\n\n<img src="${relPath}" alt="${username} contribution trophy" />\n\n<!-- TROPHY-SVG-END -->`;
+    const imageTag = readmeCentered
+      ? `<p align="center">\n  <img src="${relPath}" alt="${username} contribution trophy" />\n</p>`
+      : `<img src="${relPath}" alt="${username} contribution trophy" />`;
+    const block = `<!-- TROPHY-SVG-START -->\n## ${titleText}\n\n${imageTag}\n\n<!-- TROPHY-SVG-END -->`;
+
     if (/<!-- TROPHY-SVG-START -->[\s\S]*<!-- TROPHY-SVG-END -->/.test(readme)) {
       readme = readme.replace(/<!-- TROPHY-SVG-START -->[\s\S]*<!-- TROPHY-SVG-END -->/, block);
     } else {
@@ -272,7 +404,7 @@ async function main() {
     await fs.writeFile(readmeFile, readme, 'utf8');
   }
 
-  console.log(`Generated ${outFile} for @${username} with ${activeDaysCount} active days.`);
+  console.log(`Generated ${outFile} for @${username} with ${activeDaysCount} active days, ${totalContributions} total contributions, current streak ${stats.current}, longest streak ${stats.longest}.`);
 }
 
 main().catch(err => {
