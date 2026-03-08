@@ -266,7 +266,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const cardHeight = 50;
   const statsX = 24;
   const statsGap = 16;
-  const statsCardW = 180;
+  const statsRight = gridX + weeksCount * pitch;   // 和上方格子区右边界对齐
+  const statsAvailableWidth = statsRight - statsX;
+  const statsCardW = Math.floor((statsAvailableWidth - statsGap * 3) / 4);
   const statsCardH = 50;
   
   const statsCard1X = statsX;
