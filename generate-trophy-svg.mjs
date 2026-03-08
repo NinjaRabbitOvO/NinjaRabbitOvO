@@ -253,8 +253,6 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const width = 840;
   const height = 296;
   const labelX = gridX + 8 * pitch;
-  const trophyVisualCenterY = gridY + 3.5 * pitch + trophyOffsetY;
-  const awardTopY = trophyVisualCenterY - 10;
   // 想让奖杯更靠近文字：增大 trophyOffsetX： trophyOffsetX: 3 ~ 6
   // 想让奖杯更垂直居中：增大 trophyOffsetY： trophyOffsetY: 2 ~ 5
   // 想让文字更远离奖杯：增大 awardOffsetX：  awardOffsetX: 4 ~ 8
@@ -262,7 +260,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const trophyOffsetX = 4;
   const trophyOffsetY = 4;
   const awardOffsetX = 6;
+  const trophyVisualCenterY = gridY + 3.5 * pitch + trophyOffsetY;
   const awardLineGap = 34;
+  const awardTopY = trophyVisualCenterY - 10;
   const metaRowY = 176;
   const cardY = 226;
   const cardHeight = 50;
