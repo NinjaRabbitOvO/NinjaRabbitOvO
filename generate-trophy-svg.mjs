@@ -253,7 +253,8 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const width = 840;
   const height = 296;
   const labelX = gridX + 8 * pitch;
-  const topTextY = 108;
+  const trophyVisualCenterY = gridY + 3.5 * pitch + trophyOffsetY;
+  const awardTopY = trophyVisualCenterY - 10;
   // 想让奖杯更靠近文字：增大 trophyOffsetX： trophyOffsetX: 3 ~ 6
   // 想让奖杯更垂直居中：增大 trophyOffsetY： trophyOffsetY: 2 ~ 5
   // 想让文字更远离奖杯：增大 awardOffsetX：  awardOffsetX: 4 ~ 8
@@ -297,14 +298,16 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
     });
   }
 
-  const legend = award
-    ? `
-    <text x="${labelX + awardOffsetX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
-    <text x="${labelX + awardOffsetX}" y="${topTextY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
-    : `
-    <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
-    <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
-
+const legend = award
+  ? `
+    <text x="${labelX + awardOffsetX}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX + awardOffsetX}" y="${awardTopY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>
+  `
+  : `
+    <text x="${labelX}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
+    <text x="${labelX}" y="${awardTopY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>
+  `;
+  
   const pills = [];
 
   const ruleText = '🥉≥7 · 🥈≥30 · 🥇≥90 · 💎≥180';
