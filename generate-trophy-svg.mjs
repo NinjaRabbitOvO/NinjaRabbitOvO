@@ -248,11 +248,12 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const cell = 11;
   const gap = 3;
   const pitch = cell + gap;
+  const awardShift = 5 * pitch;
   const gridX = 24;
   const gridY = 62;
   const width = 840;
   const height = 296;
-  const labelX = gridX + 8 * pitch;
+  const labelX = gridX + 8 * pitch + awardShift;
   // 想让奖杯更靠近文字：增大 trophyOffsetX： trophyOffsetX: 3 ~ 6
   // 想让奖杯更垂直居中：增大 trophyOffsetY： trophyOffsetY: 2 ~ 5
   // 想让文字更远离奖杯：增大 awardOffsetX：  awardOffsetX: 4 ~ 8
@@ -284,8 +285,8 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
   if (award) {
     trophyCells().forEach(([cx, cy], i) => {
-      const x = gridX + cx * pitch + trophyOffsetX;
-      const y = gridY + cy * pitch + trophyOffsetY;
+      const x = gridX + cx * pitch + awardShift;
+      const y = gridY + cy * pitch;
       overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#${award.tier}Grad)">${animate ? `<animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="${(i % 5) * 0.16}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
   }
