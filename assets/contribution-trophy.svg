@@ -39,7 +39,7 @@
   <rect x="0.5" y="0.5" width="839" height="295" rx="16" fill="#0d1117" stroke="#30363d" />
   
   <text x="24" y="30" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">🏆 Contribution Trophy</text>
-  <text x="24" y="48" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">13 contribution days · 197 total contributions · @NinjaRabbitOvO</text>
+  <text x="24" y="48" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">14 contribution days · 198 total contributions · @NinjaRabbitOvO</text>
   <g filter="url(#softGlow)">
     <rect x="24" y="62" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2025-03-09: 4 contribution(s)</title></rect>
     <rect x="24" y="76" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2025-03-10: 1 contribution(s)</title></rect>
@@ -405,7 +405,7 @@
     <rect x="738" y="118" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-05: 54 contribution(s)</title></rect>
     <rect x="738" y="132" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-06: 10 contribution(s)</title></rect>
     <rect x="738" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-07: 71 contribution(s)</title></rect>
-    <rect x="752" y="62" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-03-08: 0 contribution(s)</title></rect>
+    <rect x="752" y="62" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-08: 1 contribution(s)</title></rect>
     <rect x="752" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
@@ -431,6 +431,24 @@
     <rect x="52" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.16s" repeatCount="indefinite" /></rect>
     <rect x="66" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.32s" repeatCount="indefinite" /></rect>
     <rect x="80" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.48s" repeatCount="indefinite" /></rect>
+    <rect x="654" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="668" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="668" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="668" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="682" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="682" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="682" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="682" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="682" y="132" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="696" y="62" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="696" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="696" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="696" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="696" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="710" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="710" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="710" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="724" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
   </g>
   
     <text x="136" y="108" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="#d9a441">Bronze</text>
@@ -460,7 +478,7 @@
         font-size="12"
         font-weight="700"
         fill="#ff7b72"
-      >🔥 0 Day Streak</text>
+      >🔥 8 Day Streak</text>
     </g>
 
     <g>
@@ -473,18 +491,18 @@
         font-size="12"
         font-weight="700"
         fill="#58a6ff"
-      >⚡ Longest 7 Days</text>
+      >⚡ Longest 8 Days</text>
     </g>
   </g>
   
     <g>
       <rect x="24" y="226" width="184" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="40" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Active days</text>
-      <text x="40" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">13</text>
+      <text x="40" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">14</text>
 
       <rect x="220" y="226" width="184" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="236" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
-      <text x="236" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">197</text>
+      <text x="236" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">198</text>
 
       <rect x="416" y="226" width="184" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="432" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
@@ -492,7 +510,7 @@
 
       <rect x="612" y="226" width="204" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="628" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Last active</text>
-      <text x="628" y="264" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-07</text>
+      <text x="628" y="264" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-08</text>
     </g>
   
     <g opacity="0.9">
