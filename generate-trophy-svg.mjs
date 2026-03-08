@@ -298,7 +298,6 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   }
 
   const legend = award
-    ? `  const legend = award
     ? `
     <text x="${labelX + awardOffsetX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
     <text x="${labelX + awardOffsetX}" y="${topTextY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
