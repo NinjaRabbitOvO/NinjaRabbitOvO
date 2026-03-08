@@ -431,24 +431,24 @@
     <rect x="52" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.16s" repeatCount="indefinite" /></rect>
     <rect x="66" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.32s" repeatCount="indefinite" /></rect>
     <rect x="80" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.48s" repeatCount="indefinite" /></rect>
-    <rect x="626" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
-    <rect x="640" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
-    <rect x="640" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
-    <rect x="640" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
-    <rect x="654" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
-    <rect x="654" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
-    <rect x="654" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
-    <rect x="654" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
-    <rect x="654" y="132" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
-    <rect x="668" y="62" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
-    <rect x="668" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
-    <rect x="668" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
-    <rect x="668" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
-    <rect x="668" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
-    <rect x="682" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
-    <rect x="682" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
-    <rect x="682" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
-    <rect x="696" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="570" y="108" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="584" y="94" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="584" y="108" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="584" y="122" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="598" y="80" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="598" y="94" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="598" y="108" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="598" y="122" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="598" y="136" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="66" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="80" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="94" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="108" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="122" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="80" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="94" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="108" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="640" y="94" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
   </g>
   
     <text x="128" y="101" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="#d9a441">Bronze</text>
