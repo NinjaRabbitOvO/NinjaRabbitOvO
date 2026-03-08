@@ -259,8 +259,8 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   // 想让两行文字更紧凑：减小 awardLineGap：  awardLineGap: 32 ~ 35
   const trophyOffsetX = 0;
   const trophyOffsetY = 0;
-  const awardOffsetX = +8;
-  const trophyVisualCenterY = gridY + 3.5 * pitch + trophyOffsetY;
+  const awardOffsetX = -8;
+  const trophyVisualCenterY = gridY + 3.5 * pitch;
   const awardLineGap = 34;
   const awardTopY = trophyVisualCenterY - 10;
   const metaRowY = 176;
