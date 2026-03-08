@@ -253,11 +253,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const gridY = 62;
   const width = 840;
   const height = 296;
-  const labelX = gridX + 8 * pitch + awardShift;
-  // 想让奖杯更靠近文字：增大 trophyOffsetX： trophyOffsetX: 3 ~ 6
-  // 想让奖杯更垂直居中：增大 trophyOffsetY： trophyOffsetY: 2 ~ 5
-  // 想让文字更远离奖杯：增大 awardOffsetX：  awardOffsetX: 4 ~ 8
-  // 想让两行文字更紧凑：减小 awardLineGap：  awardLineGap: 32 ~ 35
+  const labelX = gridX + 8 * pitch;
   const trophyOffsetX = 0;
   const trophyOffsetY = 0;
   const awardOffsetX = -8;
@@ -302,8 +298,8 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
 const legend = award
   ? `
-    <text x="${labelX + awardOffsetX}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
-    <text x="${labelX + awardOffsetX}" y="${awardTopY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>
+    <text x="${labelX + awardOffsetX + awardShift}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX + awardOffsetX + awardShift}" y="${awardTopY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>
   `
   : `
     <text x="${labelX}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
@@ -324,8 +320,8 @@ const legend = award
 
   const totalPillWidth = ruleWidth + currentWidth + longestWidth + pillGap * 2;
 
-  // 让三枚胶囊相对中部内容区居中
-  const pillAreaCenter = labelX + 270;
+  // 胶囊区独立居中，不跟奖杯/Award 偏移绑定
+  const pillAreaCenter = gridX + 42 * pitch;
   const pillStartX = Math.round(pillAreaCenter - totalPillWidth / 2);
 
   const pill2X = pillStartX + ruleWidth + pillGap;
