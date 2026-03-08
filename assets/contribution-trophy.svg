@@ -497,21 +497,21 @@
   </g>
   
     <g>
-      <rect x="24" y="226" width="180" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
+      <rect x="24" y="226" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="40" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Active days</text>
       <text x="40" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">14</text>
 
-      <rect x="220" y="226" width="180" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
-      <text x="236" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
-      <text x="236" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">199</text>
+      <rect x="213" y="226" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
+      <text x="229" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
+      <text x="229" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">199</text>
 
-      <rect x="416" y="226" width="180" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
-      <text x="432" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
-      <text x="432" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#d9a441">Bronze</text>
+      <rect x="402" y="226" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
+      <text x="418" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
+      <text x="418" y="264" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#d9a441">Bronze</text>
 
-      <rect x="612" y="226" width="180" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
-      <text x="628" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Last active</text>
-      <text x="628" y="264" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-08</text>
+      <rect x="591" y="226" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
+      <text x="607" y="244" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Last active</text>
+      <text x="607" y="264" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-08</text>
     </g>
   
     <g opacity="0.9">
