@@ -248,16 +248,34 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const cell = 11;
   const gap = 3;
   const pitch = cell + gap;
+  const awardShift = 5 * pitch;
   const gridX = 24;
   const gridY = 62;
   const width = 840;
   const height = 296;
   const labelX = gridX + 8 * pitch;
-  const topTextY = 108;
+  const trophyOffsetX = 0;
+  const trophyOffsetY = 0;
+  const awardOffsetX = -8;
+  const trophyVisualCenterY = gridY + 3.5 * pitch;
+  const awardLineGap = 34;
+  const awardTopY = trophyVisualCenterY - 10;
+  
   const metaRowY = 176;
   const cardY = 226;
   const cardHeight = 50;
-
+  const statsX = 24;
+  const statsGap = 16;
+  const statsRight = gridX + weeksCount * pitch;   // 和上方格子区右边界对齐
+  const statsAvailableWidth = statsRight - statsX;
+  const statsCardW = Math.floor((statsAvailableWidth - statsGap * 3) / 4);
+  const statsCardH = 50;
+  
+  const statsCard1X = statsX;
+  const statsCard2X = statsCard1X + statsCardW + statsGap;
+  const statsCard3X = statsCard2X + statsCardW + statsGap;
+  const statsCard4X = statsCard3X + statsCardW + statsGap;
+  
   const rects = [];
   const overlay = [];
   let idx = 0;
@@ -275,28 +293,31 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
   if (award) {
     trophyCells().forEach(([cx, cy], i) => {
-      const x = gridX + cx * pitch;
+      const x = gridX + cx * pitch + awardShift;
       const y = gridY + cy * pitch;
       overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#${award.tier}Grad)">${animate ? `<animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="${(i % 5) * 0.16}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
   }
 
   if (showStreak && stats.current >= 3) {
+    const flameStartWeek = weeksCount - 12;
     flameCells().forEach(([cx, cy], i) => {
-      const x = gridX + (weeksCount - 8 + cx) * pitch;
+      const x = gridX + (flameStartWeek + cx) * pitch;
       const y = gridY + cy * pitch;
       overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#streakGrad)">${animate ? `<animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="${(i % 4) * 0.12}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
   }
 
-  const legend = award
-    ? `
-    <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
-    <text x="${labelX}" y="${topTextY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
-    : `
-    <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
-    <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
-
+const legend = award
+  ? `
+    <text x="${labelX + awardOffsetX + awardShift}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX + awardOffsetX + awardShift}" y="${awardTopY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>
+  `
+  : `
+    <text x="${labelX}" y="${awardTopY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
+    <text x="${labelX}" y="${awardTopY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>
+  `;
+  
   const pills = [];
 
   const ruleText = '🥉≥7 · 🥈≥30 · 🥇≥90 · 💎≥180';
@@ -311,8 +332,8 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
   const totalPillWidth = ruleWidth + currentWidth + longestWidth + pillGap * 2;
 
-  // 让三枚胶囊相对中部内容区居中
-  const pillAreaCenter = labelX + 270;
+  // 胶囊区独立居中，不跟奖杯/Award 偏移绑定
+  const pillAreaCenter = 392;
   const pillStartX = Math.round(pillAreaCenter - totalPillWidth / 2);
 
   const pill2X = pillStartX + ruleWidth + pillGap;
@@ -353,21 +374,21 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const statCards = showStats
     ? `
     <g>
-      <rect x="24" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="40" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
-      <text x="40" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
+      <rect x="${statsCard1X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard1X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
+      <text x="${statsCard1X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
 
-      <rect x="220" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="236" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
-      <text x="236" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
+      <rect x="${statsCard2X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard2X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
+      <text x="${statsCard2X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
 
-      <rect x="416" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="432" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
-      <text x="432" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? award.label1 : 'Unranked'}</text>
+      <rect x="${statsCard3X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard3X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
+      <text x="${statsCard3X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? award.label1 : 'Unranked'}</text>
 
-      <rect x="612" y="${cardY}" width="204" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="628" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
-      <text x="628" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
+      <rect x="${statsCard4X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard4X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
+      <text x="${statsCard4X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
     </g>`
     : '';
 
