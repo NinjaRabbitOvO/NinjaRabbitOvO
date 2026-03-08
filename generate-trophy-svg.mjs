@@ -291,10 +291,10 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   }
 
   if (showStreak && stats.current >= 3) {
-    const flameStartWeek = weeksCount - 14;
+    const flameStartWeek = weeksCount - 12;
     flameCells().forEach(([cx, cy], i) => {
       const x = gridX + (flameStartWeek + cx) * pitch;
-      const y = gridY + cy * pitch + 4;
+      const y = gridY + cy * pitch;
       overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#streakGrad)">${animate ? `<animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="${(i % 4) * 0.12}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
   }
