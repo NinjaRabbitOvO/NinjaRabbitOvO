@@ -257,9 +257,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   // 想让奖杯更垂直居中：增大 trophyOffsetY： trophyOffsetY: 2 ~ 5
   // 想让文字更远离奖杯：增大 awardOffsetX：  awardOffsetX: 4 ~ 8
   // 想让两行文字更紧凑：减小 awardLineGap：  awardLineGap: 32 ~ 35
-  const trophyOffsetX = 4;
-  const trophyOffsetY = 4;
-  const awardOffsetX = 6;
+  const trophyOffsetX = 0;
+  const trophyOffsetY = 0;
+  const awardOffsetX = +8;
   const trophyVisualCenterY = gridY + 3.5 * pitch + trophyOffsetY;
   const awardLineGap = 34;
   const awardTopY = trophyVisualCenterY - 10;
@@ -291,8 +291,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   }
 
   if (showStreak && stats.current >= 3) {
+    const flameStartWeek = weeksCount - 10;
     flameCells().forEach(([cx, cy], i) => {
-      const x = gridX + (weeksCount - 8 + cx) * pitch;
+      const x = gridX + (weeksCount + cx) * pitch;
       const y = gridY + cy * pitch;
       overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#streakGrad)">${animate ? `<animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="${(i % 4) * 0.12}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
