@@ -321,7 +321,7 @@ const legend = award
   const totalPillWidth = ruleWidth + currentWidth + longestWidth + pillGap * 2;
 
   // 胶囊区独立居中，不跟奖杯/Award 偏移绑定
-  const pillAreaCenter = 406;
+  const pillAreaCenter = 392;
   const pillStartX = Math.round(pillAreaCenter - totalPillWidth / 2);
 
   const pill2X = pillStartX + ruleWidth + pillGap;
