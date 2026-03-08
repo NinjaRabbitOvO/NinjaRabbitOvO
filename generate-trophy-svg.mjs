@@ -260,10 +260,20 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const trophyVisualCenterY = gridY + 3.5 * pitch;
   const awardLineGap = 34;
   const awardTopY = trophyVisualCenterY - 10;
+  
   const metaRowY = 176;
   const cardY = 226;
   const cardHeight = 50;
-
+  const statsX = 24;
+  const statsGap = 16;
+  const statsCardW = 180;
+  const statsCardH = 50;
+  
+  const statsCard1X = statsX;
+  const statsCard2X = statsCard1X + statsCardW + statsGap;
+  const statsCard3X = statsCard2X + statsCardW + statsGap;
+  const statsCard4X = statsCard3X + statsCardW + statsGap;
+  
   const rects = [];
   const overlay = [];
   let idx = 0;
@@ -362,21 +372,21 @@ const legend = award
   const statCards = showStats
     ? `
     <g>
-      <rect x="24" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="40" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
-      <text x="40" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
+      <rect x="${statsCard1X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard1X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Active days</text>
+      <text x="${statsCard1X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${activeDaysCount}</text>
 
-      <rect x="220" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="236" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
-      <text x="236" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
+      <rect x="${statsCard2X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard2X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Total contributions</text>
+      <text x="${statsCard2X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${themeColors.text}">${totalContributions}</text>
 
-      <rect x="416" y="${cardY}" width="184" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="432" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
-      <text x="432" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? award.label1 : 'Unranked'}</text>
+      <rect x="${statsCard3X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard3X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Current tier</text>
+      <text x="${statsCard3X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="${award ? award.accent[0] : themeColors.text}">${award ? award.label1 : 'Unranked'}</text>
 
-      <rect x="612" y="${cardY}" width="204" height="${cardHeight}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
-      <text x="628" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
-      <text x="628" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
+      <rect x="${statsCard4X}" y="${cardY}" width="${statsCardW}" height="${statsCardH}" rx="10" fill="rgba(255,255,255,0.02)" stroke="${themeColors.border}" />
+      <text x="${statsCard4X + 16}" y="${cardY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Last active</text>
+      <text x="${statsCard4X + 16}" y="${cardY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${stats.latestActive || 'No activity yet'}</text>
     </g>`
     : '';
 
