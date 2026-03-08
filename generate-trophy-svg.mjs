@@ -254,6 +254,14 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const height = 296;
   const labelX = gridX + 8 * pitch;
   const topTextY = 108;
+  // 想让奖杯更靠近文字：增大 trophyOffsetX： trophyOffsetX: 3 ~ 6
+  // 想让奖杯更垂直居中：增大 trophyOffsetY： trophyOffsetY: 2 ~ 5
+  // 想让文字更远离奖杯：增大 awardOffsetX：  awardOffsetX: 4 ~ 8
+  // 想让两行文字更紧凑：减小 awardLineGap：  awardLineGap: 32 ~ 35
+  const trophyOffsetX = 4;
+  const trophyOffsetY = 4;
+  const awardOffsetX = 6;
+  const awardLineGap = 34;
   const metaRowY = 176;
   const cardY = 226;
   const cardHeight = 50;
@@ -275,8 +283,8 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
 
   if (award) {
     trophyCells().forEach(([cx, cy], i) => {
-      const x = gridX + cx * pitch;
-      const y = gridY + cy * pitch;
+      const x = gridX + cx * pitch + trophyOffsetX;
+      const y = gridY + cy * pitch + trophyOffsetY;
       overlay.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="url(#${award.tier}Grad)">${animate ? `<animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="${(i % 5) * 0.16}s" repeatCount="indefinite" />` : ''}</rect>`);
     });
   }
@@ -290,9 +298,10 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   }
 
   const legend = award
+    ? `  const legend = award
     ? `
-    <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
-    <text x="${labelX}" y="${topTextY + 38}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
+    <text x="${labelX + awardOffsetX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[0]}">${award.label1}</text>
+    <text x="${labelX + awardOffsetX}" y="${topTextY + awardLineGap}" font-family="Verdana,Segoe UI,Arial" font-size="34" font-weight="700" fill="${award.accent[1]}">${award.label2}</text>`
     : `
     <text x="${labelX}" y="${topTextY}" font-family="Verdana,Segoe UI,Arial" font-size="28" font-weight="700" fill="${themeColors.text}">Keep Going</text>
     <text x="${labelX}" y="${topTextY + 32}" font-family="Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.subtext}">Reach 7 active days for Bronze Award</text>`;
