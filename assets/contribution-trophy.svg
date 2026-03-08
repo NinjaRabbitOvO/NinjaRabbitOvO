@@ -457,9 +457,9 @@
   <g>
     
     <g>
-      <rect x="182" y="176" width="242" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="318" y="176" width="242" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="303"
+        x="439"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
@@ -470,9 +470,9 @@
     </g>
 
     <g>
-      <rect x="438" y="176" width="151" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="574" y="176" width="151" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="513.5"
+        x="649.5"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
@@ -483,9 +483,9 @@
     </g>
 
     <g>
-      <rect x="603" y="176" width="167" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="739" y="176" width="167" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="686.5"
+        x="822.5"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
