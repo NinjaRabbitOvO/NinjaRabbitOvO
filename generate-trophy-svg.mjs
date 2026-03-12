@@ -487,7 +487,7 @@ const legend = award
     ${statCards}
     ${sparkle}
   </g>
-</svg>;
+</svg>`;
 }
 
 function escapeXml(s) {
