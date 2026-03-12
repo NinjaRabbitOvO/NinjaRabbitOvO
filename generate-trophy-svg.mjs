@@ -254,18 +254,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const width = 840;
   const height = 296;
   const labelX = gridX + 8 * pitch;
-
-  const contentBaseLeft = gridX;
-  const contentBaseRight = Math.max(
-    gridX + weeksCount * pitch,
-    statsCard4X + statsCardW);
-  const contentWidth = contentBaseRight - contentBaseLeft;
-  
-  const panelInnerLeft = 24;
-  const panelInnerRight = width - 24;
-  const panelInnerWidth = panelInnerRight - panelInnerLeft;
-  const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
-  
+ 
   const trophyOffsetX = 0;
   const trophyOffsetY = 0;
   const awardOffsetX = -8;
@@ -276,6 +265,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const metaRowY = 176;
   const cardY = 226;
   const cardHeight = 50;
+  
   const statsX = 24;
   const statsGap = 16;
   const statsRight = gridX + weeksCount * pitch;   // 和上方格子区右边界对齐
@@ -287,6 +277,17 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const statsCard2X = statsCard1X + statsCardW + statsGap;
   const statsCard3X = statsCard2X + statsCardW + statsGap;
   const statsCard4X = statsCard3X + statsCardW + statsGap;
+
+  const contentBaseLeft = gridX;
+  const contentBaseRight = Math.max(
+    gridX + weeksCount * pitch,
+    statsCard4X + statsCardW);
+  const contentWidth = contentBaseRight - contentBaseLeft;
+
+  const panelInnerLeft = 24;
+  const panelInnerRight = width - 24;
+  const panelInnerWidth = panelInnerRight - panelInnerLeft;
+  const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
   
   const rects = [];
   const overlay = [];
