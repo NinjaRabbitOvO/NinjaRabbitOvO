@@ -254,6 +254,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const width = 840;
   const height = 296;
   const labelX = gridX + 8 * pitch;
+ 
   const trophyOffsetX = 0;
   const trophyOffsetY = 0;
   const awardOffsetX = -8;
@@ -264,6 +265,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const metaRowY = 176;
   const cardY = 226;
   const cardHeight = 50;
+  
   const statsX = 24;
   const statsGap = 16;
   const statsRight = gridX + weeksCount * pitch;   // 和上方格子区右边界对齐
@@ -275,6 +277,17 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const statsCard2X = statsCard1X + statsCardW + statsGap;
   const statsCard3X = statsCard2X + statsCardW + statsGap;
   const statsCard4X = statsCard3X + statsCardW + statsGap;
+
+  const contentBaseLeft = gridX;
+  const contentBaseRight = Math.max(
+    gridX + weeksCount * pitch,
+    statsCard4X + statsCardW);
+  const contentWidth = contentBaseRight - contentBaseLeft;
+
+  const panelInnerLeft = 24;
+  const panelInnerRight = width - 24;
+  const panelInnerWidth = panelInnerRight - panelInnerLeft;
+  const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
   
   const rects = [];
   const overlay = [];
@@ -406,10 +419,6 @@ const legend = award
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 710} ${gridY + 66}) scale(0.4)" fill="${themeColors.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="1.2s" repeatCount="indefinite" />
       </path>
-      <text x="24" y="32" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.glow}">
-        ${escapeXml(showInternalTitle ? '🏆' : '')}
-        ${animate ? `<animate attributeName="opacity" values="0.78;1;0.78" dur="2.2s" repeatCount="indefinite" />` : ''}
-      </text>
     </g>` : '';
 
   const header = showInternalTitle ? `
@@ -455,18 +464,25 @@ const legend = award
       </feMerge>
     </filter>
   </defs>
+  
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
   ${header}
-  <g filter="url(#softGlow)">
-    ${rects.join('\n    ')}
-    ${overlay.join('\n    ')}
+
+  <g transform="translate(${contentShiftX},0)">
+    <g filter="url(#softGlow)">
+      ${rects.join('\n    ')}
+      ${overlay.join('\n    ')}
+    </g>
+
+    ${legend}
+
+    <g>
+      ${pills.join('\n')}
+    </g>
+
+    ${statCards}
+    ${sparkle}
   </g>
-  ${legend}
-  <g>
-    ${pills.join('\n')}
-  </g>
-  ${statCards}
-  ${sparkle}
 </svg>`;
 }
 
