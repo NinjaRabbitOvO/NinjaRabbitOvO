@@ -419,10 +419,6 @@ const legend = award
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 710} ${gridY + 66}) scale(0.4)" fill="${themeColors.glow}">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="1.2s" repeatCount="indefinite" />
       </path>
-      <text x="24" y="32" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" fill="${themeColors.glow}">
-        ${escapeXml(showInternalTitle ? '🏆' : '')}
-        ${animate ? `<animate attributeName="opacity" values="0.78;1;0.78" dur="2.2s" repeatCount="indefinite" />` : ''}
-      </text>
     </g>` : '';
 
   const header = showInternalTitle ? `
