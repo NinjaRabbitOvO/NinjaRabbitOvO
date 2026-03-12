@@ -254,6 +254,18 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const width = 840;
   const height = 296;
   const labelX = gridX + 8 * pitch;
+
+  const contentBaseLeft = gridX;
+  const contentBaseRight = Math.max(
+    gridX + weeksCount * pitch,
+    statsCard4X + statsCardW);
+  const contentWidth = contentBaseRight - contentBaseLeft;
+  
+  const panelInnerLeft = 24;
+  const panelInnerRight = width - 24;
+  const panelInnerWidth = panelInnerRight - panelInnerLeft;
+  const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
+  
   const trophyOffsetX = 0;
   const trophyOffsetY = 0;
   const awardOffsetX = -8;
@@ -455,19 +467,26 @@ const legend = award
       </feMerge>
     </filter>
   </defs>
+  
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
   ${header}
-  <g filter="url(#softGlow)">
-    ${rects.join('\n    ')}
-    ${overlay.join('\n    ')}
+
+  <g transform="translate(${contentShiftX},0)">
+    <g filter="url(#softGlow)">
+      ${rects.join('\n    ')}
+      ${overlay.join('\n    ')}
+    </g>
+
+    ${legend}
+
+    <g>
+      ${pills.join('\n')}
+    </g>
+
+    ${statCards}
+    ${sparkle}
   </g>
-  ${legend}
-  <g>
-    ${pills.join('\n')}
-  </g>
-  ${statCards}
-  ${sparkle}
-</svg>`;
+</svg>
 }
 
 function escapeXml(s) {
