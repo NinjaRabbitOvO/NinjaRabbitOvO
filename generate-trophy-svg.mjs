@@ -435,14 +435,18 @@ const legend = award
     </g>` : '';
 
   const headerTitleX = 24;
-  const headerMetaX = 88; // 约等于往右推 4 个 tab 的视觉效果
+  const headerMetaX = 230; // 相当于和标题拉开较大的“4个制表位”视觉间距
+  const headerTitleY = 30;
+  const headerMetaY = 30;
+  const headerSpacerY = 48;
   
   const header = showInternalTitle ? `
-  <text x="${headerTitleX}" y="30" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
-  <text x="${headerMetaX}" y="48" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>`
-  : `
-  <text x="${headerMetaX}" y="30" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>`;
-
+    <text x="${headerTitleX}" y="${headerTitleY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
+    <text x="${headerMetaX}" y="${headerMetaY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
+    <text x="${headerTitleX}" y="${headerSpacerY}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}"></text>`
+    : `
+    <text x="${headerMetaX}" y="${headerMetaY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
+    <text x="${headerTitleX}" y="${headerSpacerY}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}"></text>`;
   
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
