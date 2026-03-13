@@ -164,6 +164,7 @@ return {
   totalForks,
   stats: computeStreakStats(days)
 };
+}
 
 function computeStreakStats(days) {
   const sorted = [...days].sort((a, b) => a.date.localeCompare(b.date));
