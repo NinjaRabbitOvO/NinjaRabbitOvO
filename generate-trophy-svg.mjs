@@ -115,6 +115,12 @@ async function fetchContributionDays(login, authToken) {
             }
           }
         }
+        repositories(first: 100, ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC) {
+          nodes {
+            stargazerCount
+            forkCount
+          }
+        }
       }
     }
   `;
@@ -141,16 +147,23 @@ async function fetchContributionDays(login, authToken) {
     throw new Error(`GitHub GraphQL errors: ${JSON.stringify(json.errors)}`);
   }
 
-  const weeks = json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks || [];
-  const days = weeks.flatMap(w => w.contributionDays);
-  const activeDays = days.filter(d => d.contributionCount > 0);
-  const totalContributions = json?.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || 0;
-  return {
-    days,
-    activeDaysCount: activeDays.length,
-    totalContributions,
-    stats: computeStreakStats(days)
-  };
+const weeks = json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks || [];
+const days = weeks.flatMap(w => w.contributionDays);
+const activeDays = days.filter(d => d.contributionCount > 0);
+const totalContributions = json?.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || 0;
+
+const repos = json?.data?.user?.repositories?.nodes || [];
+const totalStars = repos.reduce((sum, repo) => sum + (repo?.stargazerCount || 0), 0);
+const totalForks = repos.reduce((sum, repo) => sum + (repo?.forkCount || 0), 0);
+
+return {
+  days,
+  activeDaysCount: activeDays.length,
+  totalContributions,
+  totalStars,
+  totalForks,
+  stats: computeStreakStats(days)
+};
 }
 
 function computeStreakStats(days) {
@@ -242,7 +255,7 @@ function pill(x, y, width, text, color) {
     </g>`;
 }
 
-function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
+function renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, stats }) {
   const award = getAward(activeDaysCount);
   const weeksCount = Math.max(53, Math.ceil(days.length / 7));
   const cell = 11;
@@ -288,6 +301,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, stats }) {
   const panelInnerRight = width - 24;
   const panelInnerWidth = panelInnerRight - panelInnerLeft;
   const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
+
+  const heatmapRightX = gridX + (weeksCount - 1) * pitch + cell + contentShiftX;
+  const headerMetaRightX = heatmapRightX - 4; 
   
   const rects = [];
   const overlay = [];
@@ -421,11 +437,19 @@ const legend = award
       </path>
     </g>` : '';
 
+  const headerTitleX = 24;
+  const headerTitleY = 30;
+  const headerMetaY = 30;
+  const headerSpacerY = 48;
+  
   const header = showInternalTitle ? `
-  <text x="24" y="30" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
-  <text x="24" y="48" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>` : `
-  <text x="24" y="30" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">${activeDaysCount} contribution days · ${totalContributions} total contributions · @${escapeXml(username)}</text>`;
-
+    <text x="${headerTitleX}" y="${headerTitleY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
+    <text x="${headerMetaRightX}" y="${headerMetaY}" text-anchor="end" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
+    <text x="${headerTitleX}" y="${headerSpacerY}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}"></text>`
+    : `
+    <text x="${headerMetaRightX}" y="${headerMetaY}" text-anchor="end" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
+    <text x="${headerTitleX}" y="${headerSpacerY}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}"></text>`;
+  
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">GitHub contribution trophy for ${escapeXml(username)}</title>
@@ -498,8 +522,8 @@ function escapeXml(s) {
 async function main() {
   const fs = await import('node:fs/promises');
   const path = await import('node:path');
-  const { days, activeDaysCount, totalContributions, stats } = await fetchContributionDays(username, token);
-  const svg = renderSVG({ days, activeDaysCount, totalContributions, stats });
+  const { days, activeDaysCount, totalContributions, totalStars, totalForks, stats } = await fetchContributionDays(username, token);
+  const svg = renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, stats });
 
   await fs.mkdir(path.dirname(outFile), { recursive: true });
   await fs.writeFile(outFile, svg, 'utf8');
