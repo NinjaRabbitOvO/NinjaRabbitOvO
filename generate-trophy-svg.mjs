@@ -165,12 +165,46 @@ const repos = json?.data?.user?.repositories?.nodes || [];
 const totalStars = repos.reduce((sum, repo) => sum + (repo?.stargazerCount || 0), 0);
 const totalForks = repos.reduce((sum, repo) => sum + (repo?.forkCount || 0), 0);
 
+// 汇总代码语言字节数
+const languageMap = new Map();
+
+for (const repo of repos) {
+  const edges = repo?.languages?.edges || [];
+  for (const edge of edges) {
+    const langName = edge?.node?.name;
+    const langColor = edge?.node?.color || '#888888';
+    const langSize = edge?.size || 0;
+    if (!langName || langSize <= 0) continue;
+
+    if (!languageMap.has(langName)) {
+      languageMap.set(langName, {
+        name: langName,
+        color: langColor,
+        size: 0
+      });
+    }
+
+    languageMap.get(langName).size += langSize;
+  }
+}
+
+const languageStats = [...languageMap.values()]
+  .sort((a, b) => b.size - a.size);
+
+const totalLanguageSize = languageStats.reduce((sum, item) => sum + item.size, 0);
+
+const languageBreakdown = languageStats.map(item => ({
+  ...item,
+  percent: totalLanguageSize > 0 ? (item.size / totalLanguageSize) * 100 : 0
+}));
+  
 return {
   days,
   activeDaysCount: activeDays.length,
   totalContributions,
   totalStars,
   totalForks,
+  languageBreakdown,
   stats: computeStreakStats(days)
 };
 }
@@ -264,7 +298,7 @@ function pill(x, y, width, text, color) {
     </g>`;
 }
 
-function renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, stats }) {
+function renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, languageBreakdown, stats }) {
   const award = getAward(activeDaysCount);
   const weeksCount = Math.max(53, Math.ceil(days.length / 7));
   const cell = 11;
@@ -274,7 +308,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const gridX = 24;
   const gridY = 62;
   const width = 840;
-  const height = 296;
+  const height = 352;
   const labelX = gridX + 8 * pitch;
  
   const trophyOffsetX = 0;
@@ -285,7 +319,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const awardTopY = trophyVisualCenterY - 10;
   
   const metaRowY = 176;
-  const cardY = 226;
+  const cardY = 220;
   const cardHeight = 50;
   
   const statsX = 24;
@@ -299,6 +333,11 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const statsCard2X = statsCard1X + statsCardW + statsGap;
   const statsCard3X = statsCard2X + statsCardW + statsGap;
   const statsCard4X = statsCard3X + statsCardW + statsGap;
+
+  const languageBarX = statsCard1X;
+  const languageBarY = cardY + statsCardH + 18;
+  const languageBarW = statsCard4X + statsCardW - statsCard1X;
+  const languageBarH = 12; 
 
   const contentBaseLeft = gridX;
   const contentBaseRight = Math.max(
@@ -430,6 +469,31 @@ const legend = award
     </g>`
     : '';
 
+  const topLanguages = (languageBreakdown || []).slice(0, 6);
+
+  let languageSegments = '';
+  let segmentCursor = languageBarX;
+  
+  for (const lang of topLanguages) {
+    const segW = Math.max(2, Math.round((lang.percent / 100) * languageBarW));
+    languageSegments += `<rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" rx="4" fill="${lang.color || themeColors.accent}" />`;
+    segmentCursor += segW;
+  }
+  
+  const languageLegendText = topLanguages
+    .map(lang => `${lang.name} ${Math.round(lang.percent)}%`)
+    .join(' · ');
+  
+  const languageBlock = topLanguages.length
+    ? `
+      <g>
+        <text x="${languageBarX}" y="${languageBarY - 8}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Languages</text>
+        <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
+        ${languageSegments}
+        <text x="${languageBarX}" y="${languageBarY + 30}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">${escapeXml(languageLegendText)}</text>
+      </g>`
+    : '';
+
   const sparkle = animate ? `
     <g opacity="0.9">
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 74} ${gridY + 20}) scale(0.65)" fill="${themeColors.glow}">
@@ -514,6 +578,7 @@ const legend = award
     </g>
 
     ${statCards}
+    ${languageBlock}
     ${sparkle}
   </g>
 </svg>`;
@@ -531,8 +596,8 @@ function escapeXml(s) {
 async function main() {
   const fs = await import('node:fs/promises');
   const path = await import('node:path');
-  const { days, activeDaysCount, totalContributions, totalStars, totalForks, stats } = await fetchContributionDays(username, token);
-  const svg = renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, stats });
+  const { days, activeDaysCount, totalContributions, totalStars, totalForks, languageBreakdown, stats } = await fetchContributionDays(username, token);
+  const svg = renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, languageBreakdown, stats });
 
   await fs.mkdir(path.dirname(outFile), { recursive: true });
   await fs.writeFile(outFile, svg, 'utf8');
