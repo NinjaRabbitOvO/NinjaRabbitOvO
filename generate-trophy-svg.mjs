@@ -476,22 +476,41 @@ const legend = award
   
   for (const lang of topLanguages) {
     const segW = Math.max(2, Math.round((lang.percent / 100) * languageBarW));
-    languageSegments += `<rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" rx="4" fill="${lang.color || themeColors.accent}" />`;
+    languageSegments += `<rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />`;
     segmentCursor += segW;
   }
   
-  const languageLegendText = topLanguages
-    .map(lang => `${lang.name} ${Math.round(lang.percent)}%`)
-    .join(' · ');
+  let languageLegend = '';
+  let legendCursorX = languageBarX;
+  const legendY = languageBarY + 34;
+  
+  for (const lang of topLanguages) {
+    const label = `${lang.name} ${Math.round(lang.percent)}%`;
+    const estimatedLabelWidth = Math.ceil(label.length * 6.6) + 22;
+  
+    languageLegend += `
+      <g>
+        <circle cx="${legendCursorX + 5}" cy="${legendY - 3}" r="4" fill="${lang.color || themeColors.accent}" />
+        <text x="${legendCursorX + 14}" y="${legendY}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">${escapeXml(label)}</text>
+      </g>
+    `;
+  
+    legendCursorX += estimatedLabelWidth;
+  }
+
   
   const languageBlock = topLanguages.length
     ? `
-      <g>
-        <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
-        <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
-        ${languageSegments}
-        <text x="${languageBarX}" y="${languageBarY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">${escapeXml(languageLegendText)}</text>      </g>`
+        <g>
+          <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
+          <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" fill="rgba(255,255,255,0.04)" stroke="${themeColors.border}" />
+          <g clip-path="url(#langClip)">
+            ${languageSegments}
+          </g>
+          ${languageLegend}
+        </g>`
     : '';
+
 
   const sparkle = animate ? `
     <g opacity="0.9">
@@ -559,6 +578,10 @@ const legend = award
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+    
+    <clipPath id="langClip">
+      <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" />
+    </clipPath>
   </defs>
   
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
