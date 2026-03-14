@@ -303,7 +303,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
 
   const heatmapRightX = gridX + (weeksCount - 1) * pitch + cell + contentShiftX;
-  const headerMetaRightX = heatmapRightX; 
+  const headerMetaRightX = heatmapRightX - 4; 
   
   const rects = [];
   const overlay = [];
