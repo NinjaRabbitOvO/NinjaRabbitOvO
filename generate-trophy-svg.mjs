@@ -482,34 +482,30 @@ const legend = award
   
   let languageLegend = '';
   let legendCursorX = languageBarX;
-  const legendY = languageBarY + 34;
+  const legendY = languageBarY + 36;
   const legendDotR = 4;
   const legendDotGap = 8;
-  const legendItemGap = 18;
+  const legendItemGap = 22;
   
   for (let i = 0; i < topLanguages.length; i++) {
     const lang = topLanguages[i];
     const label = `${lang.name} ${Math.round(lang.percent)}%`;
-    const showSeparator = i < topLanguages.length - 1;
-    const separator = showSeparator ? ' ·' : '';
   
     const labelWidth = Math.ceil(label.length * 6.4);
-    const separatorWidth = showSeparator ? 10 : 0;
-    const itemWidth = legendDotR * 2 + legendDotGap + labelWidth + separatorWidth + legendItemGap;
+    const itemWidth = legendDotR * 2 + legendDotGap + labelWidth + legendItemGap;
   
     languageLegend += `
       <g>
         <circle cx="${legendCursorX + legendDotR}" cy="${legendY - 4}" r="${legendDotR}" fill="${lang.color || themeColors.accent}" />
-        <text x="${legendCursorX + legendDotR * 2 + legendDotGap}" y="${legendY}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">${escapeXml(label)}</text>
-        ${showSeparator ? `<text x="${legendCursorX + legendDotR * 2 + legendDotGap + labelWidth + 4}" y="${legendY}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">·</text>` : ''}
+        <text x="${legendCursorX + legendDotR * 2 + legendDotGap}" y="${legendY}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">
+          ${escapeXml(label)}
+        </text>
       </g>
     `;
   
     legendCursorX += itemWidth;
   }
 
-
-  
   const languageBlock = topLanguages.length
     ? `
         <g>
