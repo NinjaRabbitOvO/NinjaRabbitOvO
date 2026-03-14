@@ -119,6 +119,15 @@ async function fetchContributionDays(login, authToken) {
           nodes {
             stargazerCount
             forkCount
+            languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+              edges {
+                size
+                node {
+                  name
+                  color
+                }
+              }
+            }
           }
         }
       }
