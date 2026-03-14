@@ -335,7 +335,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const statsCard4X = statsCard3X + statsCardW + statsGap;
 
   const languageBarX = statsCard1X;
-  const languageBarY = cardY + statsCardH + 18;
+  const languageBarY = cardY + statsCardH + 38;
   const languageBarW = statsCard4X + statsCardW - statsCard1X;
   const languageBarH = 12; 
 
@@ -487,11 +487,10 @@ const legend = award
   const languageBlock = topLanguages.length
     ? `
       <g>
-        <text x="${languageBarX}" y="${languageBarY - 8}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">Languages</text>
+        <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
         <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" fill="rgba(255,255,255,0.03)" stroke="${themeColors.border}" />
         ${languageSegments}
-        <text x="${languageBarX}" y="${languageBarY + 30}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">${escapeXml(languageLegendText)}</text>
-      </g>`
+        <text x="${languageBarX}" y="${languageBarY + 34}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">${escapeXml(languageLegendText)}</text>      </g>`
     : '';
 
   const sparkle = animate ? `
