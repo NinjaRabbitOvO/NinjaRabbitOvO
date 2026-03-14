@@ -301,6 +301,9 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const panelInnerRight = width - 24;
   const panelInnerWidth = panelInnerRight - panelInnerLeft;
   const contentShiftX = Math.round((panelInnerWidth - contentWidth) / 2) - (contentBaseLeft - panelInnerLeft);
+
+  const heatmapRightX = gridX + (weeksCount - 1) * pitch + cell + contentShiftX;
+  const headerMetaRightX = heatmapRightX; 
   
   const rects = [];
   const overlay = [];
@@ -435,17 +438,16 @@ const legend = award
     </g>` : '';
 
   const headerTitleX = 24;
-  const headerMetaX = 230; // 相当于和标题拉开较大的“4个制表位”视觉间距
   const headerTitleY = 30;
   const headerMetaY = 30;
   const headerSpacerY = 48;
   
   const header = showInternalTitle ? `
     <text x="${headerTitleX}" y="${headerTitleY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="${themeColors.text}">${escapeXml(titleText)}</text>
-    <text x="${headerMetaX}" y="${headerMetaY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
+    <text x="${headerMetaRightX}" y="${headerMetaY}" text-anchor="end" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
     <text x="${headerTitleX}" y="${headerSpacerY}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}"></text>`
     : `
-    <text x="${headerMetaX}" y="${headerMetaY}" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
+    <text x="${headerMetaRightX}" y="${headerMetaY}" text-anchor="end" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}">⭐ ${totalStars} stars · 🍴 ${totalForks} forks · @${escapeXml(username)}</text>
     <text x="${headerTitleX}" y="${headerSpacerY}" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="${themeColors.subtext}"></text>`;
   
   return `<?xml version="1.0" encoding="UTF-8"?>
