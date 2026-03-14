@@ -9,6 +9,7 @@
 # node_modules/
 # dist/
 # build/
+assets/
 
 # 忽略某个路径下的文件
 # temp/cache.txt
