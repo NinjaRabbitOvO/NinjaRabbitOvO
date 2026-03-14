@@ -295,7 +295,7 @@
     <rect x="514" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-16: 0 contribution(s)</title></rect>
     <rect x="514" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-17: 0 contribution(s)</title></rect>
     <rect x="514" y="118" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-18: 0 contribution(s)</title></rect>
-    <rect x="514" y="132" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2025-11-19: 12 contribution(s)</title></rect>
+    <rect x="514" y="132" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2025-11-19: 12 contribution(s)</title></rect>
     <rect x="514" y="146" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-20: 0 contribution(s)</title></rect>
     <rect x="528" y="62" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-21: 0 contribution(s)</title></rect>
     <rect x="528" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-22: 0 contribution(s)</title></rect>
@@ -369,7 +369,7 @@
     <rect x="654" y="146" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-01-29: 0 contribution(s)</title></rect>
     <rect x="668" y="62" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-01-30: 0 contribution(s)</title></rect>
     <rect x="668" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-01-31: 0 contribution(s)</title></rect>
-    <rect x="668" y="90" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-02-01: 6 contribution(s)</title></rect>
+    <rect x="668" y="90" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-02-01: 6 contribution(s)</title></rect>
     <rect x="668" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-02: 0 contribution(s)</title></rect>
     <rect x="668" y="118" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-03: 0 contribution(s)</title></rect>
     <rect x="668" y="132" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-04: 0 contribution(s)</title></rect>
@@ -406,11 +406,11 @@
     <rect x="738" y="76" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-07: 71 contribution(s)</title></rect>
     <rect x="738" y="90" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-08: 53 contribution(s)</title></rect>
     <rect x="738" y="104" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-09: 19 contribution(s)</title></rect>
-    <rect x="738" y="118" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-10: 12 contribution(s)</title></rect>
-    <rect x="738" y="132" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-11: 18 contribution(s)</title></rect>
+    <rect x="738" y="118" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-10: 12 contribution(s)</title></rect>
+    <rect x="738" y="132" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-11: 18 contribution(s)</title></rect>
     <rect x="738" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-12: 23 contribution(s)</title></rect>
     <rect x="752" y="62" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-13: 22 contribution(s)</title></rect>
-    <rect x="752" y="76" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-14: 11 contribution(s)</title></rect>
+    <rect x="752" y="76" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-14: 25 contribution(s)</title></rect>
     <rect x="752" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="118" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
@@ -510,7 +510,7 @@
 
       <rect x="213" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="229" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
-      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">348</text>
+      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">362</text>
 
       <rect x="402" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="418" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
@@ -522,11 +522,10 @@
     </g>
     
       <g>
-        <text x="24" y="280" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Languages</text>
-        <rect x="24" y="288" width="740" height="12" rx="6" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
-        <rect x="24" y="288" width="546" height="12" rx="4" fill="#3572A5" /><rect x="570" y="288" width="109" height="12" rx="4" fill="#f1e05a" /><rect x="679" y="288" width="35" height="12" rx="4" fill="#e34c26" /><rect x="714" y="288" width="34" height="12" rx="4" fill="#663399" /><rect x="748" y="288" width="12" height="12" rx="4" fill="#555555" /><rect x="760" y="288" width="2" height="12" rx="4" fill="#DA3434" />
-        <text x="24" y="318" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">Python 74% · JavaScript 15% · HTML 5% · CSS 5% · C 2% · CMake 0%</text>
-      </g>
+        <text x="24" y="296" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="#c9d1d9">Languages</text>
+        <rect x="24" y="308" width="740" height="12" rx="6" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+        <rect x="24" y="308" width="546" height="12" rx="4" fill="#3572A5" /><rect x="570" y="308" width="109" height="12" rx="4" fill="#f1e05a" /><rect x="679" y="308" width="35" height="12" rx="4" fill="#e34c26" /><rect x="714" y="308" width="34" height="12" rx="4" fill="#663399" /><rect x="748" y="308" width="12" height="12" rx="4" fill="#555555" /><rect x="760" y="308" width="2" height="12" rx="4" fill="#DA3434" />
+        <text x="24" y="342" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">Python 74% · JavaScript 15% · HTML 5% · CSS 5% · C 2% · CMake 0%</text>      </g>
     
     <g opacity="0.9">
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(98 82) scale(0.65)" fill="#fff7cc">
