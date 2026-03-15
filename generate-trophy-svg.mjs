@@ -308,7 +308,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const gridX = 24;
   const gridY = 62;
   const width = 840;
-  const height = 352;
+  const height = 400;
   const labelX = gridX + 8 * pitch;
  
   const trophyOffsetX = 0;
@@ -509,9 +509,10 @@ const legend = award
   
   for (let i = 0; i < topLanguages.length; i++) {
     const lang = topLanguages[i];
-    const label = `${lang.name} ${Math.round(lang.percent)}%`;
-  
-    const labelWidth = Math.ceil(label.length * 6.4);
+    const displayPercent = lang.percent < 0.01 && lang.percent > 0 ? '<0.01' : lang.percent.toFixed(2);
+    const label = `${lang.name} ${displayPercent}%`;  
+    
+    const labelWidth = Math.ceil(label.length * 6.6);
     const itemWidth = legendDotR * 2 + legendDotGap + labelWidth + legendItemGap;
   
     languageLegend += `
@@ -526,91 +527,139 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-const languageBlock = topLanguages.length
-  ? `
-      <!-- 这样整个语言条都会轻微呼吸。 -->
-      <g opacity="0.96">
-        ${animate ? `
-        <animate attributeName="opacity"
-                 values="0.96;1;0.96"
-                 dur="5.5s"
-                 repeatCount="indefinite" />
-        ` : ``}
-        
-        <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
-
-        <!-- 最外层亮边框 -->
-        <rect
-          x="${languageBarX - 2}"
-          y="${languageBarY - 2}"
-          width="${languageBarW + 4}"
-          height="${languageBarH + 4}"
-          rx="8"
-          fill="none"
-          stroke="url(#langBorderFlow)"
-          stroke-width="1.2"
-          filter="url(#langOuterGlow)"
-        />
-
-        <!-- 外层暗壳 -->
-        <rect
-          x="${languageBarX - 1}"
-          y="${languageBarY - 1}"
-          width="${languageBarW + 2}"
-          height="${languageBarH + 2}"
-          rx="7"
-          fill="rgba(0,0,0,0.22)"
-          stroke="${themeColors.border}"
-          stroke-opacity="0.95"
-        />
-
-        <!-- 玻璃底 -->
-        <rect
-          x="${languageBarX}"
-          y="${languageBarY}"
-          width="${languageBarW}"
-          height="${languageBarH}"
-          rx="6"
-          fill="url(#langGlassBg)"
-        />
-
-        <!-- 顶部高光，制造玻璃感 -->
-        <rect
-          x="${languageBarX + 1}"
-          y="${languageBarY + 1}"
-          width="${languageBarW - 2}"
-          height="${Math.max(3, Math.floor(languageBarH * 0.42))}"
-          rx="5"
-          fill="url(#langGlassHighlight)"
-        />
-
-        <!-- 底部暗线，制造厚度 -->
+    const footerY = legendY + 28;
+    const footerLinkColor = themeColors.accent;
+    const footerTextColor = themeColors.subtext;
+    
+    const footerBlock = `
+      <g>
         <line
-          x1="${languageBarX + 2}"
-          y1="${languageBarY + languageBarH - 1}"
-          x2="${languageBarX + languageBarW - 2}"
-          y2="${languageBarY + languageBarH - 1}"
-          stroke="black"
-          stroke-opacity="0.22"
+          x1="${languageBarX}"
+          y1="${footerY - 14}"
+          x2="${languageBarX + languageBarW}"
+          y2="${footerY - 14}"
+          stroke="${themeColors.border}"
+          stroke-opacity="0.55"
         />
+    
+        <text x="${languageBarX}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+          Get the same:
+        </text>
+        <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
+          <text x="${languageBarX + 82}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
+            Contribution-Trophy
+          </text>
+        </a>
+    
+        <text x="${languageBarX}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+          Author:
+        </text>
+    
+        <a href="https://github.com/NinjaRabbitOvO" target="_blank">
+          <text x="${languageBarX + 44}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+            @NinjaRabbitOvO
+          </text>
+        </a>
+    
+        <text x="${languageBarX + 148}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+          ,
+        </text>
+    
+        <a href="https://chatgpt.com" target="_blank">
+          <text x="${languageBarX + 156}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+            @ChatGPT
+          </text>
+        </a>
+      </g>
+    `;
 
-        <!-- 彩色分段 -->
-        <g clip-path="url(#langClip)">
-          ${languageSegments}
-        </g>
-
-        <!-- 扫光 -->
-        ${animate ? `
+  
+  const languageBlock = topLanguages.length
+    ? `
+        <!-- 这样整个语言条都会轻微呼吸。 -->
+        <g opacity="0.96">
+          ${animate ? `
+          <animate attributeName="opacity"
+                   values="0.96;1;0.96"
+                   dur="5.5s"
+                   repeatCount="indefinite" />
+          ` : ``}
+          
+          <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Used Languages</text>
+  
+          <!-- 最外层亮边框 -->
+          <rect
+            x="${languageBarX - 2}"
+            y="${languageBarY - 2}"
+            width="${languageBarW + 4}"
+            height="${languageBarH + 4}"
+            rx="8"
+            fill="none"
+            stroke="url(#langBorderFlow)"
+            stroke-width="1.2"
+            filter="url(#langOuterGlow)"
+          />
+  
+          <!-- 外层暗壳 -->
+          <rect
+            x="${languageBarX - 1}"
+            y="${languageBarY - 1}"
+            width="${languageBarW + 2}"
+            height="${languageBarH + 2}"
+            rx="7"
+            fill="rgba(0,0,0,0.22)"
+            stroke="${themeColors.border}"
+            stroke-opacity="0.95"
+          />
+  
+          <!-- 玻璃底 -->
+          <rect
+            x="${languageBarX}"
+            y="${languageBarY}"
+            width="${languageBarW}"
+            height="${languageBarH}"
+            rx="6"
+            fill="url(#langGlassBg)"
+          />
+  
+          <!-- 顶部高光，制造玻璃感 -->
+          <rect
+            x="${languageBarX + 1}"
+            y="${languageBarY + 1}"
+            width="${languageBarW - 2}"
+            height="${Math.max(3, Math.floor(languageBarH * 0.42))}"
+            rx="5"
+            fill="url(#langGlassHighlight)"
+          />
+  
+          <!-- 底部暗线，制造厚度 -->
+          <line
+            x1="${languageBarX + 2}"
+            y1="${languageBarY + languageBarH - 1}"
+            x2="${languageBarX + languageBarW - 2}"
+            y2="${languageBarY + languageBarH - 1}"
+            stroke="black"
+            stroke-opacity="0.22"
+          />
+  
+          <!-- 彩色分段 -->
           <g clip-path="url(#langClip)">
-            <rect x="${languageBarX - languageBarW}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" fill="url(#langShine)">
-              <animate attributeName="x" values="${languageBarX - languageBarW};${languageBarX + languageBarW}" dur="4.8s" repeatCount="indefinite" />
-            </rect>
+            ${languageSegments}
           </g>
-        ` : ''}
-
-        ${languageLegend}
-      </g>`
-  : '';
+  
+          <!-- 扫光 -->
+          ${animate ? `
+            <g clip-path="url(#langClip)">
+              <rect x="${languageBarX - languageBarW}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" fill="url(#langShine)">
+                <animate attributeName="x" values="${languageBarX - languageBarW};${languageBarX + languageBarW}" dur="4.8s" repeatCount="indefinite" />
+              </rect>
+            </g>
+          ` : ''}
+  
+          ${languageLegend}
+          ${footerBlock}
+        </g>`
+    : '';
 
 
 
