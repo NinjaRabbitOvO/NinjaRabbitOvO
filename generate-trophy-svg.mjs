@@ -488,6 +488,7 @@ const legend = award
   
     languageSegments += `
       <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />
+      <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${Math.max(2, Math.floor(languageBarH * 0.42))}" fill="white" opacity="0.08" />
     `;
   
     if (i < topLanguages.length - 1) {
@@ -530,53 +531,67 @@ const languageBlock = topLanguages.length
       <g>
         <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
 
-        <!-- 外层深边框 -->
+        <!-- 最外层亮边框 -->
         <rect
-          x="${languageBarX - 1.5}"
-          y="${languageBarY - 1.5}"
-          width="${languageBarW + 3}"
-          height="${languageBarH + 3}"
-          rx="7.5"
+          x="${languageBarX - 2}"
+          y="${languageBarY - 2}"
+          width="${languageBarW + 4}"
+          height="${languageBarH + 4}"
+          rx="8"
           fill="none"
+          stroke="#8ecbff"
+          stroke-opacity="0.45"
+          filter="url(#langOuterGlow)"
+        />
+
+        <!-- 外层暗壳 -->
+        <rect
+          x="${languageBarX - 1}"
+          y="${languageBarY - 1}"
+          width="${languageBarW + 2}"
+          height="${languageBarH + 2}"
+          rx="7"
+          fill="rgba(0,0,0,0.22)"
           stroke="${themeColors.border}"
           stroke-opacity="0.95"
         />
-        
-        <!-- 顶部高光边，制造伪 3D -->
-        <rect
-          x="${languageBarX - 0.5}"
-          y="${languageBarY - 0.5}"
-          width="${languageBarW + 1}"
-          height="${languageBarH + 1}"
-          rx="6.5"
-          fill="none"
-          stroke="white"
-          stroke-opacity="0.10"
-        />
-        
-        <!-- 内层轨道 -->
+
+        <!-- 玻璃底 -->
         <rect
           x="${languageBarX}"
           y="${languageBarY}"
           width="${languageBarW}"
           height="${languageBarH}"
           rx="6"
-          fill="url(#langTrackBg)"
-         />
-        
-        <line
-          x1="${languageBarX + 1}"
-          y1="${languageBarY + languageBarH - 1}"
-          x2="${languageBarX + languageBarW - 1}"
-          y2="${languageBarY + languageBarH - 1}"
-          stroke="black"
-          stroke-opacity="0.18"
+          fill="url(#langGlassBg)"
         />
 
+        <!-- 顶部高光，制造玻璃感 -->
+        <rect
+          x="${languageBarX + 1}"
+          y="${languageBarY + 1}"
+          width="${languageBarW - 2}"
+          height="${Math.max(3, Math.floor(languageBarH * 0.42))}"
+          rx="5"
+          fill="url(#langGlassHighlight)"
+        />
+
+        <!-- 底部暗线，制造厚度 -->
+        <line
+          x1="${languageBarX + 2}"
+          y1="${languageBarY + languageBarH - 1}"
+          x2="${languageBarX + languageBarW - 2}"
+          y2="${languageBarY + languageBarH - 1}"
+          stroke="black"
+          stroke-opacity="0.22"
+        />
+
+        <!-- 彩色分段 -->
         <g clip-path="url(#langClip)">
           ${languageSegments}
         </g>
 
+        <!-- 扫光 -->
         ${animate ? `
           <g clip-path="url(#langClip)">
             <rect x="${languageBarX - languageBarW}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" fill="url(#langShine)">
@@ -672,7 +687,7 @@ const languageBlock = topLanguages.length
     
     <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0" />
-      <stop offset="50%" stop-color="white" stop-opacity="0.18" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.30" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
     </linearGradient>
     
@@ -680,6 +695,27 @@ const languageBlock = topLanguages.length
       <stop offset="0%" stop-color="white" stop-opacity="0.10" />
       <stop offset="100%" stop-color="white" stop-opacity="0.03" />
     </linearGradient>
+    
+    <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.16" />
+      <stop offset="18%" stop-color="white" stop-opacity="0.08" />
+      <stop offset="55%" stop-color="white" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.06" />
+    </linearGradient>
+    
+    <linearGradient id="langGlassHighlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    
+    <filter id="langOuterGlow" x="-20%" y="-80%" width="140%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+      
   </defs>
   
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
