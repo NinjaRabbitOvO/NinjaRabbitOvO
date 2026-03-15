@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="840" height="352" viewBox="0 0 840 352" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="840" height="400" viewBox="0 0 840 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">GitHub contribution trophy for NinjaRabbitOvO</title>
   <desc id="desc">Contribution heatmap with a pixel trophy, streak stats, and award tier based on active contribution days.</desc>
   <defs>
@@ -87,7 +87,7 @@
       
   </defs>
   
-  <rect x="0.5" y="0.5" width="839" height="351" rx="16" fill="#0d1117" stroke="#30363d" />
+  <rect x="0.5" y="0.5" width="839" height="399" rx="16" fill="#0d1117" stroke="#30363d" />
   
     <text x="24" y="30" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">🏆 Contribution Trophy</text>
     <text x="784" y="30" text-anchor="end" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">⭐ 77 stars · 🍴 17 forks · @NinjaRabbitOvO</text>
@@ -445,7 +445,7 @@
     <rect x="710" y="118" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-26: 0 contribution(s)</title></rect>
     <rect x="710" y="132" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-27: 0 contribution(s)</title></rect>
     <rect x="710" y="146" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-28: 0 contribution(s)</title></rect>
-    <rect x="724" y="62" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-01: 17 contribution(s)</title></rect>
+    <rect x="724" y="62" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-01: 17 contribution(s)</title></rect>
     <rect x="724" y="76" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-02: 11 contribution(s)</title></rect>
     <rect x="724" y="90" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-03: 2 contribution(s)</title></rect>
     <rect x="724" y="104" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-04: 4 contribution(s)</title></rect>
@@ -453,13 +453,13 @@
     <rect x="724" y="132" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-06: 10 contribution(s)</title></rect>
     <rect x="724" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-07: 71 contribution(s)</title></rect>
     <rect x="738" y="62" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-08: 53 contribution(s)</title></rect>
-    <rect x="738" y="76" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-09: 19 contribution(s)</title></rect>
+    <rect x="738" y="76" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-09: 19 contribution(s)</title></rect>
     <rect x="738" y="90" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-10: 12 contribution(s)</title></rect>
-    <rect x="738" y="104" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-11: 18 contribution(s)</title></rect>
-    <rect x="738" y="118" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-12: 23 contribution(s)</title></rect>
-    <rect x="738" y="132" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-13: 22 contribution(s)</title></rect>
-    <rect x="738" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-14: 25 contribution(s)</title></rect>
-    <rect x="752" y="62" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-15: 1 contribution(s)</title></rect>
+    <rect x="738" y="104" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-11: 18 contribution(s)</title></rect>
+    <rect x="738" y="118" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-12: 23 contribution(s)</title></rect>
+    <rect x="738" y="132" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-13: 22 contribution(s)</title></rect>
+    <rect x="738" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-14: 37 contribution(s)</title></rect>
+    <rect x="752" y="62" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-15: 38 contribution(s)</title></rect>
     <rect x="752" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
@@ -560,7 +560,7 @@
 
       <rect x="213" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="229" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
-      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">363</text>
+      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">412</text>
 
       <rect x="402" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="418" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
@@ -571,158 +571,199 @@
       <text x="607" y="258" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-15</text>
     </g>
     
-      <!-- 这样整个语言条都会轻微呼吸。 -->
-      <g opacity="0.96">
-        
-        <animate attributeName="opacity"
-                 values="0.96;1;0.96"
-                 dur="5.5s"
-                 repeatCount="indefinite" />
-        
-        
-        <text x="24" y="296" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="#c9d1d9">Languages</text>
-
-        <!-- 最外层亮边框 -->
-        <rect
-          x="22"
-          y="306"
-          width="744"
-          height="18"
-          rx="8"
-          fill="none"
-          stroke="url(#langBorderFlow)"
-          stroke-width="1.2"
-          filter="url(#langOuterGlow)"
-        />
-
-        <!-- 外层暗壳 -->
-        <rect
-          x="23"
-          y="307"
-          width="742"
-          height="16"
-          rx="7"
-          fill="rgba(0,0,0,0.22)"
-          stroke="#30363d"
-          stroke-opacity="0.95"
-        />
-
-        <!-- 玻璃底 -->
-        <rect
-          x="24"
-          y="308"
-          width="740"
-          height="14"
-          rx="6"
-          fill="url(#langGlassBg)"
-        />
-
-        <!-- 顶部高光，制造玻璃感 -->
-        <rect
-          x="25"
-          y="309"
-          width="738"
-          height="5"
-          rx="5"
-          fill="url(#langGlassHighlight)"
-        />
-
-        <!-- 底部暗线，制造厚度 -->
-        <line
-          x1="26"
-          y1="321"
-          x2="762"
-          y2="321"
-          stroke="black"
-          stroke-opacity="0.22"
-        />
-
-        <!-- 彩色分段 -->
-        <g clip-path="url(#langClip)">
+        <!-- 这样整个语言条都会轻微呼吸。 -->
+        <g opacity="0.96">
           
-      <rect x="24" y="308" width="546" height="14" fill="#3572A5" />
-      <rect x="24" y="308" width="546" height="5" fill="white" opacity="0.08" />
-    
-        <rect x="566" y="308" width="8" height="14" fill="url(#langBlend)" />
-      
-      <rect x="570" y="308" width="109" height="14" fill="#f1e05a" />
-      <rect x="570" y="308" width="109" height="5" fill="white" opacity="0.08" />
-    
-        <rect x="675" y="308" width="8" height="14" fill="url(#langBlend)" />
-      
-      <rect x="679" y="308" width="35" height="14" fill="#e34c26" />
-      <rect x="679" y="308" width="35" height="5" fill="white" opacity="0.08" />
-    
-        <rect x="710" y="308" width="8" height="14" fill="url(#langBlend)" />
-      
-      <rect x="714" y="308" width="34" height="14" fill="#663399" />
-      <rect x="714" y="308" width="34" height="5" fill="white" opacity="0.08" />
-    
-        <rect x="744" y="308" width="8" height="14" fill="url(#langBlend)" />
-      
-      <rect x="748" y="308" width="12" height="14" fill="#555555" />
-      <rect x="748" y="308" width="12" height="5" fill="white" opacity="0.08" />
-    
-        <rect x="756" y="308" width="8" height="14" fill="url(#langBlend)" />
-      
-      <rect x="760" y="308" width="4" height="14" fill="#DA3434" />
-      <rect x="760" y="308" width="4" height="5" fill="white" opacity="0.08" />
-    
-        </g>
-
-        <!-- 扫光 -->
-        
+          <animate attributeName="opacity"
+                   values="0.96;1;0.96"
+                   dur="5.5s"
+                   repeatCount="indefinite" />
+          
+          
+          <text x="24" y="296" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="#c9d1d9">Used Languages</text>
+  
+          <!-- 最外层亮边框 -->
+          <rect
+            x="22"
+            y="306"
+            width="744"
+            height="18"
+            rx="8"
+            fill="none"
+            stroke="url(#langBorderFlow)"
+            stroke-width="1.2"
+            filter="url(#langOuterGlow)"
+          />
+  
+          <!-- 外层暗壳 -->
+          <rect
+            x="23"
+            y="307"
+            width="742"
+            height="16"
+            rx="7"
+            fill="rgba(0,0,0,0.22)"
+            stroke="#30363d"
+            stroke-opacity="0.95"
+          />
+  
+          <!-- 玻璃底 -->
+          <rect
+            x="24"
+            y="308"
+            width="740"
+            height="14"
+            rx="6"
+            fill="url(#langGlassBg)"
+          />
+  
+          <!-- 顶部高光，制造玻璃感 -->
+          <rect
+            x="25"
+            y="309"
+            width="738"
+            height="5"
+            rx="5"
+            fill="url(#langGlassHighlight)"
+          />
+  
+          <!-- 底部暗线，制造厚度 -->
+          <line
+            x1="26"
+            y1="321"
+            x2="762"
+            y2="321"
+            stroke="black"
+            stroke-opacity="0.22"
+          />
+  
+          <!-- 彩色分段 -->
           <g clip-path="url(#langClip)">
-            <rect x="-716" y="308" width="740" height="14" fill="url(#langShine)">
-              <animate attributeName="x" values="-716;764" dur="4.8s" repeatCount="indefinite" />
-            </rect>
+            
+      <rect x="24" y="308" width="537" height="14" fill="#3572A5" />
+      <rect x="24" y="308" width="537" height="5" fill="white" opacity="0.08" />
+    
+        <rect x="557" y="308" width="8" height="14" fill="url(#langBlend)" />
+      
+      <rect x="561" y="308" width="121" height="14" fill="#f1e05a" />
+      <rect x="561" y="308" width="121" height="5" fill="white" opacity="0.08" />
+    
+        <rect x="678" y="308" width="8" height="14" fill="url(#langBlend)" />
+      
+      <rect x="682" y="308" width="34" height="14" fill="#e34c26" />
+      <rect x="682" y="308" width="34" height="5" fill="white" opacity="0.08" />
+    
+        <rect x="712" y="308" width="8" height="14" fill="url(#langBlend)" />
+      
+      <rect x="716" y="308" width="34" height="14" fill="#663399" />
+      <rect x="716" y="308" width="34" height="5" fill="white" opacity="0.08" />
+    
+        <rect x="746" y="308" width="8" height="14" fill="url(#langBlend)" />
+      
+      <rect x="750" y="308" width="12" height="14" fill="#555555" />
+      <rect x="750" y="308" width="12" height="5" fill="white" opacity="0.08" />
+    
+        <rect x="758" y="308" width="8" height="14" fill="url(#langBlend)" />
+      
+      <rect x="762" y="308" width="2" height="14" fill="#DA3434" />
+      <rect x="762" y="308" width="2" height="5" fill="white" opacity="0.08" />
+    
           </g>
-        
-
-        
+  
+          <!-- 扫光 -->
+          
+            <g clip-path="url(#langClip)">
+              <rect x="-716" y="308" width="740" height="14" fill="url(#langShine)">
+                <animate attributeName="x" values="-716;764" dur="4.8s" repeatCount="indefinite" />
+              </rect>
+            </g>
+          
+  
+          
       <g>
         <circle cx="28" cy="336" r="4" fill="#3572A5" />
         <text x="40" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
-          Python 74%
+          Python 72.51%
         </text>
       </g>
     
       <g>
-        <circle cx="130" cy="336" r="4" fill="#f1e05a" />
-        <text x="142" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
-          JavaScript 15%
+        <circle cx="152" cy="336" r="4" fill="#f1e05a" />
+        <text x="164" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
+          JavaScript 16.29%
         </text>
       </g>
     
       <g>
-        <circle cx="258" cy="336" r="4" fill="#e34c26" />
-        <text x="270" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
-          HTML 5%
+        <circle cx="303" cy="336" r="4" fill="#e34c26" />
+        <text x="315" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
+          HTML 4.62%
         </text>
       </g>
     
       <g>
-        <circle cx="341" cy="336" r="4" fill="#663399" />
-        <text x="353" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
-          CSS 5%
+        <circle cx="407" cy="336" r="4" fill="#663399" />
+        <text x="419" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
+          CSS 4.58%
         </text>
       </g>
     
       <g>
-        <circle cx="418" cy="336" r="4" fill="#555555" />
-        <text x="430" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
-          C 2%
+        <circle cx="505" cy="336" r="4" fill="#555555" />
+        <text x="517" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
+          C 1.65%
         </text>
       </g>
     
       <g>
-        <circle cx="482" cy="336" r="4" fill="#DA3434" />
-        <text x="494" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
-          CMake 0%
+        <circle cx="590" cy="336" r="4" fill="#DA3434" />
+        <text x="602" y="340" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="#8b949e">
+          CMake 0.25%
         </text>
       </g>
     
+          
+      <g>
+        <line
+          x1="24"
+          y1="354"
+          x2="764"
+          y2="354"
+          stroke="#30363d"
+          stroke-opacity="0.55"
+        />
+    
+        <text x="24" y="368" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+          Get the same:
+        </text>
+        <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
+          <text x="106" y="368" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
+            Contribution-Trophy
+          </text>
+        </a>
+    
+        <text x="24" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+          Author:
+        </text>
+    
+        <a href="https://github.com/NinjaRabbitOvO" target="_blank">
+          <text x="68" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+            @NinjaRabbitOvO
+          </text>
+        </a>
+    
+        <text x="172" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+          ,
+        </text>
+    
+        <a href="https://chatgpt.com" target="_blank">
+          <text x="180" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+            @ChatGPT
+          </text>
+        </a>
       </g>
+    
+        </g>
     
     <g opacity="0.9">
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(98 82) scale(0.65)" fill="#fff7cc">
