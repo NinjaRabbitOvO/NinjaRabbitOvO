@@ -527,46 +527,83 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-    const footerY = legendY + 28;
-    const footerLinkColor = themeColors.accent;
+    const footerY = legendY + 42;
+    const footerLineY = footerY - 16;
+    const footerLeftX = languageBarX;
+    const footerRightX = languageBarX + languageBarW;
     const footerTextColor = themeColors.subtext;
+    const footerLinkColor = themeColors.accent;
     
     const footerBlock = `
       <g>
-        <line
-          x1="${languageBarX}"
-          y1="${footerY - 14}"
-          x2="${languageBarX + languageBarW}"
-          y2="${footerY - 14}"
-          stroke="${themeColors.border}"
-          stroke-opacity="0.55"
+        <!-- 分割线底轨 -->
+        <rect
+          x="${footerLeftX}"
+          y="${footerLineY - 1}"
+          width="${languageBarW}"
+          height="2"
+          rx="1"
+          fill="url(#footerLineBase)"
         />
     
-        <text x="${languageBarX}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <!-- 分割线外轮廓，模仿进度条边框 -->
+        <rect
+          x="${footerLeftX - 1}"
+          y="${footerLineY - 2}"
+          width="${languageBarW + 2}"
+          height="4"
+          rx="2"
+          fill="none"
+          stroke="url(#langBorderFlow)"
+          stroke-opacity="0.35"
+        />
+    
+        <!-- 从中间向两边滑动的两个光块 -->
+        ${animate ? `
+          <g>
+            <rect x="${footerLeftX + languageBarW / 2 - 24}" y="${footerLineY - 2}" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+              <animate attributeName="x"
+                       values="${footerLeftX + languageBarW / 2 - 24};${footerLeftX};${footerLeftX + languageBarW / 2 - 24}"
+                       dur="3.6s"
+                       repeatCount="indefinite" />
+            </rect>
+    
+            <rect x="${footerLeftX + languageBarW / 2}" y="${footerLineY - 2}" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+              <animate attributeName="x"
+                       values="${footerLeftX + languageBarW / 2};${footerRightX - 24};${footerLeftX + languageBarW / 2}"
+                       dur="3.6s"
+                       repeatCount="indefinite" />
+            </rect>
+          </g>
+        ` : ''}
+    
+        <!-- 左侧信息 -->
+        <text x="${footerLeftX}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="${languageBarX + 82}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
+          <text x="${footerLeftX + 82}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
             Contribution-Trophy
           </text>
         </a>
     
-        <text x="${languageBarX}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <!-- 右侧作者信息，整体右对齐 -->
+        <text x="${footerRightX - 165}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           Author:
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="${languageBarX + 44}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+          <text x="${footerRightX - 118}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="${languageBarX + 148}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <text x="${footerRightX - 15}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           ,
         </text>
     
         <a href="https://chatgpt.com" target="_blank">
-          <text x="${languageBarX + 156}" y="${footerY + 18}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+          <text x="${footerRightX}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
             @ChatGPT
           </text>
         </a>
@@ -737,6 +774,18 @@ const legend = award
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+
+    <linearGradient id="footerLineBase" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8ecbff" stop-opacity="0.10" />
+      <stop offset="50%" stop-color="#bfe4ff" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#8ecbff" stop-opacity="0.10" />
+    </linearGradient>
+    
+    <linearGradient id="footerLineGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
     
     <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="white" stop-opacity="0.16" />
