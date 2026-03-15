@@ -16,6 +16,17 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+## 开发工具 & 技术栈
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,anaconda,matlab,arduino,figma,vscode,vim,pycharm,clion,androidstudio,githubactions" />
+  </a>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=c,python,cmake,linux,raspberrypi,html,css,mysql,javascript,electron,django,docker,opencv,tensorflow,pytorch" />
+  </a>
+
+
 
 <!-- TROPHY-SVG-START -->
 ## 🏆 Contribution Trophy
