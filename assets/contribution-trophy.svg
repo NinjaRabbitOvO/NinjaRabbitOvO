@@ -355,7 +355,7 @@
     <rect x="514" y="62" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-16: 0 contribution(s)</title></rect>
     <rect x="514" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-17: 0 contribution(s)</title></rect>
     <rect x="514" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-18: 0 contribution(s)</title></rect>
-    <rect x="514" y="104" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2025-11-19: 12 contribution(s)</title></rect>
+    <rect x="514" y="104" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2025-11-19: 12 contribution(s)</title></rect>
     <rect x="514" y="118" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-20: 0 contribution(s)</title></rect>
     <rect x="514" y="132" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-21: 0 contribution(s)</title></rect>
     <rect x="514" y="146" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2025-11-22: 0 contribution(s)</title></rect>
@@ -458,20 +458,20 @@
     <rect x="710" y="132" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-27: 0 contribution(s)</title></rect>
     <rect x="710" y="146" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-02-28: 0 contribution(s)</title></rect>
     <rect x="724" y="62" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-01: 17 contribution(s)</title></rect>
-    <rect x="724" y="76" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-02: 11 contribution(s)</title></rect>
+    <rect x="724" y="76" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-02: 11 contribution(s)</title></rect>
     <rect x="724" y="90" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-03: 2 contribution(s)</title></rect>
     <rect x="724" y="104" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-04: 4 contribution(s)</title></rect>
     <rect x="724" y="118" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-05: 54 contribution(s)</title></rect>
-    <rect x="724" y="132" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-06: 10 contribution(s)</title></rect>
+    <rect x="724" y="132" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-06: 10 contribution(s)</title></rect>
     <rect x="724" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-07: 71 contribution(s)</title></rect>
     <rect x="738" y="62" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-08: 53 contribution(s)</title></rect>
     <rect x="738" y="76" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-09: 19 contribution(s)</title></rect>
-    <rect x="738" y="90" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-10: 12 contribution(s)</title></rect>
+    <rect x="738" y="90" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-10: 12 contribution(s)</title></rect>
     <rect x="738" y="104" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-11: 18 contribution(s)</title></rect>
-    <rect x="738" y="118" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-12: 23 contribution(s)</title></rect>
-    <rect x="738" y="132" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-13: 22 contribution(s)</title></rect>
-    <rect x="738" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-14: 37 contribution(s)</title></rect>
-    <rect x="752" y="62" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-15: 38 contribution(s)</title></rect>
+    <rect x="738" y="118" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-12: 23 contribution(s)</title></rect>
+    <rect x="738" y="132" width="11" height="11" rx="2" fill="#40c463" opacity="1"><title>2026-03-13: 22 contribution(s)</title></rect>
+    <rect x="738" y="146" width="11" height="11" rx="2" fill="#30a14e" opacity="1"><title>2026-03-14: 37 contribution(s)</title></rect>
+    <rect x="752" y="62" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-15: 51 contribution(s)</title></rect>
     <rect x="752" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
@@ -572,7 +572,7 @@
 
       <rect x="213" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="229" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
-      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">412</text>
+      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">425</text>
 
       <rect x="402" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="418" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
@@ -739,7 +739,7 @@
         <!-- 分割线底轨 -->
         <rect
           x="24"
-          y="365"
+          y="369"
           width="740"
           height="2"
           rx="1"
@@ -749,7 +749,7 @@
         <!-- 分割线外轮廓，模仿进度条边框 -->
         <rect
           x="23"
-          y="364"
+          y="368"
           width="742"
           height="4"
           rx="2"
@@ -761,52 +761,52 @@
         <!-- 从中间向两边滑动的两个光块 -->
         
           <g>
-            <rect x="370" y="364" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+            <rect x="370" y="368" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="370;24;370"
-                       dur="3.6s"
+                       dur="4.6s"
                        repeatCount="indefinite" />
             </rect>
     
-            <rect x="394" y="364" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+            <rect x="394" y="368" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="394;740;394"
-                       dur="3.6s"
+                       dur="4.6s"
                        repeatCount="indefinite" />
             </rect>
           </g>
         
     
         <!-- 左侧信息 -->
-        <text x="24" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="24" y="388" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="106" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
+          <text x="120" y="388" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
             Contribution-Trophy
           </text>
         </a>
     
         <!-- 右侧作者信息，整体右对齐 -->
-        <text x="599" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
-          Author:
+        <a href="https://chatgpt.com" target="_blank">
+          <text x="764" y="388" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+            @ChatGPT
+          </text>
+        </a>
+    
+        <text x="686" y="388" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+          ,
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="646" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+          <text x="678" y="388" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="749" y="382" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
-          ,
+        <text x="556" y="388" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+          Author:
         </text>
-    
-        <a href="https://chatgpt.com" target="_blank">
-          <text x="764" y="382" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
-            @ChatGPT
-          </text>
-        </a>
       </g>
     
         </g>
