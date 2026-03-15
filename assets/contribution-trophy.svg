@@ -43,6 +43,18 @@
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+
+    <linearGradient id="footerLineBase" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8ecbff" stop-opacity="0.10" />
+      <stop offset="50%" stop-color="#bfe4ff" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#8ecbff" stop-opacity="0.10" />
+    </linearGradient>
+    
+    <linearGradient id="footerLineGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
     
     <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="white" stop-opacity="0.16" />
@@ -724,40 +736,74 @@
     
           
       <g>
-        <line
-          x1="24"
-          y1="354"
-          x2="764"
-          y2="354"
-          stroke="#30363d"
-          stroke-opacity="0.55"
+        <!-- 分割线底轨 -->
+        <rect
+          x="24"
+          y="365"
+          width="740"
+          height="2"
+          rx="1"
+          fill="url(#footerLineBase)"
         />
     
-        <text x="24" y="368" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <!-- 分割线外轮廓，模仿进度条边框 -->
+        <rect
+          x="23"
+          y="364"
+          width="742"
+          height="4"
+          rx="2"
+          fill="none"
+          stroke="url(#langBorderFlow)"
+          stroke-opacity="0.35"
+        />
+    
+        <!-- 从中间向两边滑动的两个光块 -->
+        
+          <g>
+            <rect x="370" y="364" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+              <animate attributeName="x"
+                       values="370;24;370"
+                       dur="3.6s"
+                       repeatCount="indefinite" />
+            </rect>
+    
+            <rect x="394" y="364" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+              <animate attributeName="x"
+                       values="394;740;394"
+                       dur="3.6s"
+                       repeatCount="indefinite" />
+            </rect>
+          </g>
+        
+    
+        <!-- 左侧信息 -->
+        <text x="24" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="106" y="368" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
+          <text x="106" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
             Contribution-Trophy
           </text>
         </a>
     
-        <text x="24" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <!-- 右侧作者信息，整体右对齐 -->
+        <text x="599" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           Author:
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="68" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+          <text x="646" y="382" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="172" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="749" y="382" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           ,
         </text>
     
         <a href="https://chatgpt.com" target="_blank">
-          <text x="180" y="386" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+          <text x="764" y="382" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
             @ChatGPT
           </text>
         </a>
