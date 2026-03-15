@@ -739,7 +739,7 @@
         <!-- 分割线底轨 -->
         <rect
           x="24"
-          y="359"
+          y="363"
           width="740"
           height="2"
           rx="1"
@@ -749,7 +749,7 @@
         <!-- 分割线外轮廓，模仿进度条边框 -->
         <rect
           x="23"
-          y="358"
+          y="362"
           width="742"
           height="4"
           rx="2"
@@ -761,14 +761,14 @@
         <!-- 从中间向两边滑动的两个光块 -->
         
           <g>
-            <rect x="370" y="358" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+            <rect x="370" y="362" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="370;24;370"
                        dur="4.6s"
                        repeatCount="indefinite" />
             </rect>
     
-            <rect x="394" y="358" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+            <rect x="394" y="362" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="394;740;394"
                        dur="4.6s"
@@ -778,33 +778,33 @@
         
     
         <!-- 左侧信息 -->
-        <text x="24" y="372" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="24" y="376" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="106" y="372" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
+          <text x="112" y="376" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#58a6ff">
             Contribution-Trophy
           </text>
         </a>
     
         <!-- 右侧作者信息，整体右对齐 -->
         <a href="https://chatgpt.com" target="_blank">
-          <text x="764" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+          <text x="764" y="376" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
             @ChatGPT
           </text>
         </a>
     
-        <text x="698" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="698" y="376" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           ,
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="690" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+          <text x="690" y="376" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="586" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="586" y="376" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           Author:
         </text>
       </g>
