@@ -527,8 +527,8 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-    const footerY = legendY + 42;
-    const footerLineY = footerY - 16;
+    const footerY = legendY + 48;
+    const footerLineY = footerY - 18;
     const footerLeftX = languageBarX;
     const footerRightX = languageBarX + languageBarW;
     const footerTextColor = themeColors.subtext;
@@ -564,14 +564,14 @@ const legend = award
             <rect x="${footerLeftX + languageBarW / 2 - 24}" y="${footerLineY - 2}" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="${footerLeftX + languageBarW / 2 - 24};${footerLeftX};${footerLeftX + languageBarW / 2 - 24}"
-                       dur="3.6s"
+                       dur="4.6s"
                        repeatCount="indefinite" />
             </rect>
     
             <rect x="${footerLeftX + languageBarW / 2}" y="${footerLineY - 2}" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="${footerLeftX + languageBarW / 2};${footerRightX - 24};${footerLeftX + languageBarW / 2}"
-                       dur="3.6s"
+                       dur="4.6s"
                        repeatCount="indefinite" />
             </rect>
           </g>
@@ -582,31 +582,31 @@ const legend = award
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="${footerLeftX + 82}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
+          <text x="${footerLeftX + 96}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
             Contribution-Trophy
           </text>
         </a>
     
         <!-- 右侧作者信息，整体右对齐 -->
-        <text x="${footerRightX - 165}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
-          Author:
-        </text>
-    
-        <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="${footerRightX - 118}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
-            @NinjaRabbitOvO
-          </text>
-        </a>
-    
-        <text x="${footerRightX - 15}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
-          ,
-        </text>
-    
         <a href="https://chatgpt.com" target="_blank">
           <text x="${footerRightX}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
             @ChatGPT
           </text>
         </a>
+    
+        <text x="${footerRightX - 78}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+          ,
+        </text>
+    
+        <a href="https://github.com/NinjaRabbitOvO" target="_blank">
+          <text x="${footerRightX - 86}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+            @NinjaRabbitOvO
+          </text>
+        </a>
+    
+        <text x="${footerRightX - 208}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+          Author:
+        </text>
       </g>
     `;
 
