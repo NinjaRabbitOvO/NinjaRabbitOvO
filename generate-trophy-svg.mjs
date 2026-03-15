@@ -551,13 +551,6 @@ const languageBlock = topLanguages.length
           stroke-width="1.2"
           filter="url(#langOuterGlow)"
         >
-          ${animate ? `
-          <animate attributeName="stroke-dashoffset"
-                   values="0;40"
-                   dur="6s"
-                   repeatCount="indefinite" />
-          ` : ``}
-        </rect>
 
         <!-- 外层暗壳 -->
         <rect
