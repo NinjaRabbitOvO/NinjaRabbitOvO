@@ -527,8 +527,8 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-    const footerY = legendY + 48;
-    const footerLineY = footerY - 18;
+    const footerY = legendY + 36;
+    const footerLineY = footerY - 16;
     const footerLeftX = languageBarX;
     const footerRightX = languageBarX + languageBarW;
     const footerTextColor = themeColors.subtext;
@@ -582,7 +582,7 @@ const legend = award
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="${footerLeftX + 96}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
+          <text x="${footerLeftX + 82}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
             Contribution-Trophy
           </text>
         </a>
@@ -594,17 +594,17 @@ const legend = award
           </text>
         </a>
     
-        <text x="${footerRightX - 78}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <text x="${footerRightX - 60}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           ,
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="${footerRightX - 86}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+          <text x="${footerRightX - 68}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="${footerRightX - 208}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <text x="${footerRightX - 170}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           Author:
         </text>
       </g>
