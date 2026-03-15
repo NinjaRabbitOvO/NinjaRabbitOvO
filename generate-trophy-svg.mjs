@@ -527,7 +527,7 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-    const footerY = legendY + 32;
+    const footerY = legendY + 36;
     const footerLineY = footerY - 12;
     const footerLeftX = languageBarX;
     const footerRightX = languageBarX + languageBarW;
@@ -582,7 +582,7 @@ const legend = award
           Get the same:
         </text>
         <a href="https://github.com/NinjaRabbitOvO/Contribution-Trophy" target="_blank">
-          <text x="${footerLeftX + 82}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
+          <text x="${footerLeftX + 88}" y="${footerY}" font-family="Verdana,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="${footerLinkColor}">
             Contribution-Trophy
           </text>
         </a>
