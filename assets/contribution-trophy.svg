@@ -794,17 +794,17 @@
           </text>
         </a>
     
-        <text x="704" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="698" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           ,
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="696" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
+          <text x="690" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#58a6ff">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="594" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
+        <text x="586" y="372" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="#8b949e">
           Author:
         </text>
       </g>
