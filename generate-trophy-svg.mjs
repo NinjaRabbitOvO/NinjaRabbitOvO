@@ -528,34 +528,46 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-  const languageBlock = topLanguages.length
-    ? `
-        <g>
-          <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
-          <rect
-            x="${languageBarX - 1}"
-            y="${languageBarY - 1}"
-            width="${languageBarW + 2}"
-            height="${languageBarH + 2}"
-            rx="7"
-            fill="none"
-            stroke="${themeColors.border}"
-            stroke-opacity="0.9"
-          />
-          <rect
-            x="${languageBarX}"
-            y="${languageBarY}"
-            width="${languageBarW}"
-            height="${languageBarH}"
-            rx="6"
-            fill="rgba(255,255,255,0.05)"
-          />
+const languageBlock = topLanguages.length
+  ? `
+      <g>
+        <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
+
+        <rect
+          x="${languageBarX - 1}"
+          y="${languageBarY - 1}"
+          width="${languageBarW + 2}"
+          height="${languageBarH + 2}"
+          rx="7"
+          fill="none"
+          stroke="${themeColors.border}"
+          stroke-opacity="0.9"
+        />
+        <rect
+          x="${languageBarX}"
+          y="${languageBarY}"
+          width="${languageBarW}"
+          height="${languageBarH}"
+          rx="6"
+          fill="rgba(255,255,255,0.05)"
+        />
+
+        <g clip-path="url(#langClip)">
+          ${languageSegments}
+        </g>
+
+        ${animate ? `
           <g clip-path="url(#langClip)">
-            ${languageSegments}
+            <rect x="${languageBarX - languageBarW}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" fill="url(#langShine)">
+              <animate attributeName="x" values="${languageBarX - languageBarW};${languageBarX + languageBarW}" dur="3.8s" repeatCount="indefinite" />
+            </rect>
           </g>
-          ${languageLegend}
-        </g>`
-    : '';
+        ` : ''}
+
+        ${languageLegend}
+      </g>`
+  : '';
+
 
 
   const sparkle = animate ? `
@@ -628,6 +640,13 @@ const legend = award
     <clipPath id="langClip">
       <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" />
     </clipPath>
+    <linearGradient id="langShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="45%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.28" />
+      <stop offset="55%" stop-color="white" stop-opacity="0" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
   </defs>
   
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
