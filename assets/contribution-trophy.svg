@@ -739,7 +739,7 @@
         <!-- 分割线底轨 -->
         <rect
           x="24"
-          y="359"
+          y="363"
           width="740"
           height="2"
           rx="1"
@@ -749,7 +749,7 @@
         <!-- 分割线外轮廓，模仿进度条边框 -->
         <rect
           x="23"
-          y="358"
+          y="362"
           width="742"
           height="4"
           rx="2"
@@ -761,14 +761,14 @@
         <!-- 从中间向两边滑动的两个光块 -->
         
           <g>
-            <rect x="370" y="358" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+            <rect x="370" y="362" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="370;24;370"
                        dur="4.6s"
                        repeatCount="indefinite" />
             </rect>
     
-            <rect x="394" y="358" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
+            <rect x="394" y="362" width="24" height="4" rx="2" fill="url(#footerLineGlow)">
               <animate attributeName="x"
                        values="394;740;394"
                        dur="4.6s"
