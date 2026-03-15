@@ -479,7 +479,6 @@ const legend = award
   
     let segW;
     if (i === topLanguages.length - 1) {
-      // 最后一段直接吃掉剩余宽度，彻底消除尾部空隙
       segW = languageBarX + languageBarW - segmentCursor;
     } else {
       segW = Math.max(2, Math.round((lang.percent / 100) * languageBarW));
@@ -491,16 +490,14 @@ const legend = award
       <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />
     `;
   
-    // 给分段连接处加一个很窄的柔和过渡
     if (i < topLanguages.length - 1) {
       languageSegments += `
-        <rect x="${segmentCursor + segW - 1}" y="${languageBarY}" width="2" height="${languageBarH}" fill="rgba(255,255,255,0.10)" />
+        <rect x="${segmentCursor + segW - 4}" y="${languageBarY}" width="8" height="${languageBarH}" fill="url(#langBlend)" />
       `;
     }
   
     segmentCursor += segW;
   }
-
 
   let languageLegend = '';
   let legendCursorX = languageBarX;
@@ -645,6 +642,11 @@ const languageBlock = topLanguages.length
       <stop offset="45%" stop-color="white" stop-opacity="0" />
       <stop offset="50%" stop-color="white" stop-opacity="0.28" />
       <stop offset="55%" stop-color="white" stop-opacity="0" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.18" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
     </linearGradient>
   </defs>
