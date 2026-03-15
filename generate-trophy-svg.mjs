@@ -528,7 +528,7 @@ const legend = award
   }
 
     const footerY = legendY + 36;
-    const footerLineY = footerY - 16;
+    const footerLineY = footerY - 12;
     const footerLeftX = languageBarX;
     const footerRightX = languageBarX + languageBarW;
     const footerTextColor = themeColors.subtext;
