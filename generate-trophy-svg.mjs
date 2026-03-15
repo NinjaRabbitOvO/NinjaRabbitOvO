@@ -530,23 +530,47 @@ const languageBlock = topLanguages.length
       <g>
         <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
 
+        <!-- 外层深边框 -->
         <rect
-          x="${languageBarX - 1}"
-          y="${languageBarY - 1}"
-          width="${languageBarW + 2}"
-          height="${languageBarH + 2}"
-          rx="7"
+          x="${languageBarX - 1.5}"
+          y="${languageBarY - 1.5}"
+          width="${languageBarW + 3}"
+          height="${languageBarH + 3}"
+          rx="7.5"
           fill="none"
           stroke="${themeColors.border}"
-          stroke-opacity="0.9"
+          stroke-opacity="0.95"
         />
+        
+        <!-- 顶部高光边，制造伪 3D -->
+        <rect
+          x="${languageBarX - 0.5}"
+          y="${languageBarY - 0.5}"
+          width="${languageBarW + 1}"
+          height="${languageBarH + 1}"
+          rx="6.5"
+          fill="none"
+          stroke="white"
+          stroke-opacity="0.10"
+        />
+        
+        <!-- 内层轨道 -->
         <rect
           x="${languageBarX}"
           y="${languageBarY}"
           width="${languageBarW}"
           height="${languageBarH}"
           rx="6"
-          fill="rgba(255,255,255,0.05)"
+          fill="url(#langTrackBg)"
+         />
+        
+        <line
+          x1="${languageBarX + 1}"
+          y1="${languageBarY + languageBarH - 1}"
+          x2="${languageBarX + languageBarW - 1}"
+          y2="${languageBarY + languageBarH - 1}"
+          stroke="black"
+          stroke-opacity="0.18"
         />
 
         <g clip-path="url(#langClip)">
@@ -637,6 +661,7 @@ const languageBlock = topLanguages.length
     <clipPath id="langClip">
       <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" />
     </clipPath>
+    
     <linearGradient id="langShine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0" />
       <stop offset="45%" stop-color="white" stop-opacity="0" />
@@ -644,10 +669,16 @@ const languageBlock = topLanguages.length
       <stop offset="55%" stop-color="white" stop-opacity="0" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
     </linearGradient>
+    
     <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0" />
       <stop offset="50%" stop-color="white" stop-opacity="0.18" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    
+    <linearGradient id="langTrackBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.03" />
     </linearGradient>
   </defs>
   
