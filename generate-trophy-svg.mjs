@@ -337,7 +337,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const languageBarX = statsCard1X;
   const languageBarY = cardY + statsCardH + 38;
   const languageBarW = statsCard4X + statsCardW - statsCard1X;
-  const languageBarH = 12; 
+  const languageBarH = 14; 
 
   const contentBaseLeft = gridX;
   const contentBaseRight = Math.max(
@@ -528,7 +528,15 @@ const legend = award
 
 const languageBlock = topLanguages.length
   ? `
-      <g>
+      <!-- 这样整个语言条都会轻微呼吸。 -->
+      <g opacity="0.96">
+        ${animate ? `
+        <animate attributeName="opacity"
+                 values="0.96;1;0.96"
+                 dur="5.5s"
+                 repeatCount="indefinite" />
+        ` : ``}
+        
         <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
 
         <!-- 最外层亮边框 -->
@@ -539,10 +547,17 @@ const languageBlock = topLanguages.length
           height="${languageBarH + 4}"
           rx="8"
           fill="none"
-          stroke="#8ecbff"
-          stroke-opacity="0.45"
+          stroke="url(#langBorderFlow)"
+          stroke-width="1.2"
           filter="url(#langOuterGlow)"
-        />
+        >
+          ${animate ? `
+          <animate attributeName="stroke-dashoffset"
+                   values="0;40"
+                   dur="6s"
+                   repeatCount="indefinite" />
+          ` : ``}
+        </rect>
 
         <!-- 外层暗壳 -->
         <rect
@@ -595,7 +610,7 @@ const languageBlock = topLanguages.length
         ${animate ? `
           <g clip-path="url(#langClip)">
             <rect x="${languageBarX - languageBarW}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" fill="url(#langShine)">
-              <animate attributeName="x" values="${languageBarX - languageBarW};${languageBarX + languageBarW}" dur="3.8s" repeatCount="indefinite" />
+              <animate attributeName="x" values="${languageBarX - languageBarW};${languageBarX + languageBarW}" dur="4.8s" repeatCount="indefinite" />
             </rect>
           </g>
         ` : ''}
@@ -684,6 +699,12 @@ const languageBlock = topLanguages.length
       <stop offset="55%" stop-color="white" stop-opacity="0" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
     </linearGradient>
+
+    <linearGradient id="langBorderFlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8ecbff" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#bfe4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8ecbff" stop-opacity="0.3"/>
+    </linearGradient>
     
     <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0" />
@@ -698,7 +719,7 @@ const languageBlock = topLanguages.length
     
     <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="white" stop-opacity="0.16" />
-      <stop offset="18%" stop-color="white" stop-opacity="0.08" />
+      <stop offset="18%" stop-color="white" stop-opacity="0.14" />
       <stop offset="55%" stop-color="white" stop-opacity="0.03" />
       <stop offset="100%" stop-color="white" stop-opacity="0.06" />
     </linearGradient>
