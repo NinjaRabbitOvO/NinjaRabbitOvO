@@ -688,9 +688,25 @@ const languageBlock = topLanguages.length
       </feMerge>
     </filter>
     
-    <clipPath id="langClip">
-      <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" />
-    </clipPath>
+    <filter id="langOuterGlow" x="-20%" y="-80%" width="140%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.16" />
+      <stop offset="18%" stop-color="white" stop-opacity="0.08" />
+      <stop offset="55%" stop-color="white" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.06" />
+    </linearGradient>
+    
+    <linearGradient id="langGlassHighlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
     
     <linearGradient id="langShine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0" />
@@ -698,12 +714,6 @@ const languageBlock = topLanguages.length
       <stop offset="50%" stop-color="white" stop-opacity="0.28" />
       <stop offset="55%" stop-color="white" stop-opacity="0" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
-    </linearGradient>
-
-    <linearGradient id="langBorderFlow" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#8ecbff" stop-opacity="0.3"/>
-      <stop offset="50%" stop-color="#bfe4ff" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#8ecbff" stop-opacity="0.3"/>
     </linearGradient>
     
     <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
@@ -717,25 +727,15 @@ const languageBlock = topLanguages.length
       <stop offset="100%" stop-color="white" stop-opacity="0.03" />
     </linearGradient>
     
-    <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="white" stop-opacity="0.16" />
-      <stop offset="18%" stop-color="white" stop-opacity="0.14" />
-      <stop offset="55%" stop-color="white" stop-opacity="0.03" />
-      <stop offset="100%" stop-color="white" stop-opacity="0.06" />
+    <linearGradient id="langBorderFlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8ecbff" stop-opacity="0.30" />
+      <stop offset="50%" stop-color="#bfe4ff" stop-opacity="0.90" />
+      <stop offset="100%" stop-color="#8ecbff" stop-opacity="0.30" />
     </linearGradient>
     
-    <linearGradient id="langGlassHighlight" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="white" stop-opacity="0.28" />
-      <stop offset="100%" stop-color="white" stop-opacity="0" />
-    </linearGradient>
-    
-    <filter id="langOuterGlow" x="-20%" y="-80%" width="140%" height="260%">
-      <feGaussianBlur stdDeviation="2.2" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
+    <clipPath id="langClip">
+      <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" />
+    </clipPath>
       
   </defs>
   
