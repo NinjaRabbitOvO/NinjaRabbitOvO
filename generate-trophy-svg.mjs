@@ -119,6 +119,15 @@ async function fetchContributionDays(login, authToken) {
           nodes {
             stargazerCount
             forkCount
+            languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+              edges {
+                size
+                node {
+                  name
+                  color
+                }
+              }
+            }
           }
         }
       }
@@ -156,12 +165,46 @@ const repos = json?.data?.user?.repositories?.nodes || [];
 const totalStars = repos.reduce((sum, repo) => sum + (repo?.stargazerCount || 0), 0);
 const totalForks = repos.reduce((sum, repo) => sum + (repo?.forkCount || 0), 0);
 
+// 汇总代码语言字节数
+const languageMap = new Map();
+
+for (const repo of repos) {
+  const edges = repo?.languages?.edges || [];
+  for (const edge of edges) {
+    const langName = edge?.node?.name;
+    const langColor = edge?.node?.color || '#888888';
+    const langSize = edge?.size || 0;
+    if (!langName || langSize <= 0) continue;
+
+    if (!languageMap.has(langName)) {
+      languageMap.set(langName, {
+        name: langName,
+        color: langColor,
+        size: 0
+      });
+    }
+
+    languageMap.get(langName).size += langSize;
+  }
+}
+
+const languageStats = [...languageMap.values()]
+  .sort((a, b) => b.size - a.size);
+
+const totalLanguageSize = languageStats.reduce((sum, item) => sum + item.size, 0);
+
+const languageBreakdown = languageStats.map(item => ({
+  ...item,
+  percent: totalLanguageSize > 0 ? (item.size / totalLanguageSize) * 100 : 0
+}));
+  
 return {
   days,
   activeDaysCount: activeDays.length,
   totalContributions,
   totalStars,
   totalForks,
+  languageBreakdown,
   stats: computeStreakStats(days)
 };
 }
@@ -255,7 +298,7 @@ function pill(x, y, width, text, color) {
     </g>`;
 }
 
-function renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, stats }) {
+function renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, languageBreakdown, stats }) {
   const award = getAward(activeDaysCount);
   const weeksCount = Math.max(53, Math.ceil(days.length / 7));
   const cell = 11;
@@ -265,7 +308,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const gridX = 24;
   const gridY = 62;
   const width = 840;
-  const height = 296;
+  const height = 352;
   const labelX = gridX + 8 * pitch;
  
   const trophyOffsetX = 0;
@@ -276,7 +319,7 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const awardTopY = trophyVisualCenterY - 10;
   
   const metaRowY = 176;
-  const cardY = 226;
+  const cardY = 220;
   const cardHeight = 50;
   
   const statsX = 24;
@@ -290,6 +333,11 @@ function renderSVG({ days, activeDaysCount, totalContributions, totalStars, tota
   const statsCard2X = statsCard1X + statsCardW + statsGap;
   const statsCard3X = statsCard2X + statsCardW + statsGap;
   const statsCard4X = statsCard3X + statsCardW + statsGap;
+
+  const languageBarX = statsCard1X;
+  const languageBarY = cardY + statsCardH + 38;
+  const languageBarW = statsCard4X + statsCardW - statsCard1X;
+  const languageBarH = 14; 
 
   const contentBaseLeft = gridX;
   const contentBaseRight = Math.max(
@@ -421,6 +469,151 @@ const legend = award
     </g>`
     : '';
 
+  const topLanguages = (languageBreakdown || []).slice(0, 6);
+
+  let languageSegments = '';
+  let segmentCursor = languageBarX;
+  
+  for (let i = 0; i < topLanguages.length; i++) {
+    const lang = topLanguages[i];
+  
+    let segW;
+    if (i === topLanguages.length - 1) {
+      segW = languageBarX + languageBarW - segmentCursor;
+    } else {
+      segW = Math.max(2, Math.round((lang.percent / 100) * languageBarW));
+    }
+  
+    if (segW <= 0) continue;
+  
+    languageSegments += `
+      <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />
+      <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${Math.max(2, Math.floor(languageBarH * 0.42))}" fill="white" opacity="0.08" />
+    `;
+  
+    if (i < topLanguages.length - 1) {
+      languageSegments += `
+        <rect x="${segmentCursor + segW - 4}" y="${languageBarY}" width="8" height="${languageBarH}" fill="url(#langBlend)" />
+      `;
+    }
+  
+    segmentCursor += segW;
+  }
+
+  let languageLegend = '';
+  let legendCursorX = languageBarX;
+  const legendY = languageBarY + 32;
+  const legendDotR = 4;
+  const legendDotGap = 8;
+  const legendItemGap = 22;
+  
+  for (let i = 0; i < topLanguages.length; i++) {
+    const lang = topLanguages[i];
+    const label = `${lang.name} ${Math.round(lang.percent)}%`;
+  
+    const labelWidth = Math.ceil(label.length * 6.4);
+    const itemWidth = legendDotR * 2 + legendDotGap + labelWidth + legendItemGap;
+  
+    languageLegend += `
+      <g>
+        <circle cx="${legendCursorX + legendDotR}" cy="${legendY - 4}" r="${legendDotR}" fill="${lang.color || themeColors.accent}" />
+        <text x="${legendCursorX + legendDotR * 2 + legendDotGap}" y="${legendY}" font-family="Verdana,Segoe UI,Arial" font-size="11" fill="${themeColors.subtext}">
+          ${escapeXml(label)}
+        </text>
+      </g>
+    `;
+  
+    legendCursorX += itemWidth;
+  }
+
+const languageBlock = topLanguages.length
+  ? `
+      <!-- 这样整个语言条都会轻微呼吸。 -->
+      <g opacity="0.96">
+        ${animate ? `
+        <animate attributeName="opacity"
+                 values="0.96;1;0.96"
+                 dur="5.5s"
+                 repeatCount="indefinite" />
+        ` : ``}
+        
+        <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
+
+        <!-- 最外层亮边框 -->
+        <rect
+          x="${languageBarX - 2}"
+          y="${languageBarY - 2}"
+          width="${languageBarW + 4}"
+          height="${languageBarH + 4}"
+          rx="8"
+          fill="none"
+          stroke="url(#langBorderFlow)"
+          stroke-width="1.2"
+          filter="url(#langOuterGlow)"
+        />
+
+        <!-- 外层暗壳 -->
+        <rect
+          x="${languageBarX - 1}"
+          y="${languageBarY - 1}"
+          width="${languageBarW + 2}"
+          height="${languageBarH + 2}"
+          rx="7"
+          fill="rgba(0,0,0,0.22)"
+          stroke="${themeColors.border}"
+          stroke-opacity="0.95"
+        />
+
+        <!-- 玻璃底 -->
+        <rect
+          x="${languageBarX}"
+          y="${languageBarY}"
+          width="${languageBarW}"
+          height="${languageBarH}"
+          rx="6"
+          fill="url(#langGlassBg)"
+        />
+
+        <!-- 顶部高光，制造玻璃感 -->
+        <rect
+          x="${languageBarX + 1}"
+          y="${languageBarY + 1}"
+          width="${languageBarW - 2}"
+          height="${Math.max(3, Math.floor(languageBarH * 0.42))}"
+          rx="5"
+          fill="url(#langGlassHighlight)"
+        />
+
+        <!-- 底部暗线，制造厚度 -->
+        <line
+          x1="${languageBarX + 2}"
+          y1="${languageBarY + languageBarH - 1}"
+          x2="${languageBarX + languageBarW - 2}"
+          y2="${languageBarY + languageBarH - 1}"
+          stroke="black"
+          stroke-opacity="0.22"
+        />
+
+        <!-- 彩色分段 -->
+        <g clip-path="url(#langClip)">
+          ${languageSegments}
+        </g>
+
+        <!-- 扫光 -->
+        ${animate ? `
+          <g clip-path="url(#langClip)">
+            <rect x="${languageBarX - languageBarW}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" fill="url(#langShine)">
+              <animate attributeName="x" values="${languageBarX - languageBarW};${languageBarX + languageBarW}" dur="4.8s" repeatCount="indefinite" />
+            </rect>
+          </g>
+        ` : ''}
+
+        ${languageLegend}
+      </g>`
+  : '';
+
+
+
   const sparkle = animate ? `
     <g opacity="0.9">
       <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" transform="translate(${gridX + 74} ${gridY + 20}) scale(0.65)" fill="${themeColors.glow}">
@@ -487,6 +680,56 @@ const legend = award
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+    
+    <filter id="langOuterGlow" x="-20%" y="-80%" width="140%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="langGlassBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.16" />
+      <stop offset="18%" stop-color="white" stop-opacity="0.08" />
+      <stop offset="55%" stop-color="white" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.06" />
+    </linearGradient>
+    
+    <linearGradient id="langGlassHighlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    
+    <linearGradient id="langShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="45%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.28" />
+      <stop offset="55%" stop-color="white" stop-opacity="0" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    
+    <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.30" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    
+    <linearGradient id="langTrackBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.03" />
+    </linearGradient>
+    
+    <linearGradient id="langBorderFlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8ecbff" stop-opacity="0.30" />
+      <stop offset="50%" stop-color="#bfe4ff" stop-opacity="0.90" />
+      <stop offset="100%" stop-color="#8ecbff" stop-opacity="0.30" />
+    </linearGradient>
+    
+    <clipPath id="langClip">
+      <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" />
+    </clipPath>
+      
   </defs>
   
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="16" fill="${themeColors.panel}" stroke="${themeColors.border}" />
@@ -505,6 +748,7 @@ const legend = award
     </g>
 
     ${statCards}
+    ${languageBlock}
     ${sparkle}
   </g>
 </svg>`;
@@ -522,8 +766,8 @@ function escapeXml(s) {
 async function main() {
   const fs = await import('node:fs/promises');
   const path = await import('node:path');
-  const { days, activeDaysCount, totalContributions, totalStars, totalForks, stats } = await fetchContributionDays(username, token);
-  const svg = renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, stats });
+  const { days, activeDaysCount, totalContributions, totalStars, totalForks, languageBreakdown, stats } = await fetchContributionDays(username, token);
+  const svg = renderSVG({ days, activeDaysCount, totalContributions, totalStars, totalForks, languageBreakdown, stats });
 
   await fs.mkdir(path.dirname(outFile), { recursive: true });
   await fs.writeFile(outFile, svg, 'utf8');
