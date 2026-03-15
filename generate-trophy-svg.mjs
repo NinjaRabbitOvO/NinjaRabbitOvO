@@ -594,17 +594,17 @@ const legend = award
           </text>
         </a>
     
-        <text x="${footerRightX - 60}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <text x="${footerRightX - 66}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           ,
         </text>
     
         <a href="https://github.com/NinjaRabbitOvO" target="_blank">
-          <text x="${footerRightX - 68}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
+          <text x="${footerRightX - 74}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerLinkColor}">
             @NinjaRabbitOvO
           </text>
         </a>
     
-        <text x="${footerRightX - 170}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
+        <text x="${footerRightX - 178}" y="${footerY}" text-anchor="end" font-family="Verdana,Segoe UI,Arial" font-size="11.5" fill="${footerTextColor}">
           Author:
         </text>
       </g>
