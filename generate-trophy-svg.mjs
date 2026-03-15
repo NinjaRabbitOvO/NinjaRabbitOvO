@@ -482,7 +482,7 @@ const legend = award
   
   let languageLegend = '';
   let legendCursorX = languageBarX;
-  const legendY = languageBarY + 36;
+  const legendY = languageBarY + 32;
   const legendDotR = 4;
   const legendDotGap = 8;
   const legendItemGap = 22;
