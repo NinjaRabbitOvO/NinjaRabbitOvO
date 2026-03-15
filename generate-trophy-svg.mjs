@@ -474,12 +474,27 @@ const legend = award
   let languageSegments = '';
   let segmentCursor = languageBarX;
   
-  for (const lang of topLanguages) {
-    const segW = Math.max(2, Math.round((lang.percent / 100) * languageBarW));
-    languageSegments += `<rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />`;
+  for (let i = 0; i < topLanguages.length; i++) {
+    const lang = topLanguages[i];
+  
+    let segW;
+    if (i === topLanguages.length - 1) {
+      // 最后一段直接吃掉剩余宽度，彻底消除尾部空隙
+      segW = languageBarX + languageBarW - segmentCursor;
+    } else {
+      segW = Math.max(2, Math.round((lang.percent / 100) * languageBarW));
+    }
+  
+    if (segW <= 0) continue;
+  
+    languageSegments += `
+      <g>
+        <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />
+      </g>
+    `;
     segmentCursor += segW;
   }
-  
+
   let languageLegend = '';
   let legendCursorX = languageBarX;
   const legendY = languageBarY + 32;
@@ -510,7 +525,24 @@ const legend = award
     ? `
         <g>
           <text x="${languageBarX}" y="${languageBarY - 12}" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="${themeColors.text}">Languages</text>
-          <rect x="${languageBarX}" y="${languageBarY}" width="${languageBarW}" height="${languageBarH}" rx="6" fill="rgba(255,255,255,0.04)" stroke="${themeColors.border}" />
+          <rect
+            x="${languageBarX - 1}"
+            y="${languageBarY - 1}"
+            width="${languageBarW + 2}"
+            height="${languageBarH + 2}"
+            rx="7"
+            fill="none"
+            stroke="${themeColors.border}"
+            stroke-opacity="0.9"
+          />
+          <rect
+            x="${languageBarX}"
+            y="${languageBarY}"
+            width="${languageBarW}"
+            height="${languageBarH}"
+            rx="6"
+            fill="rgba(255,255,255,0.05)"
+          />
           <g clip-path="url(#langClip)">
             ${languageSegments}
           </g>
