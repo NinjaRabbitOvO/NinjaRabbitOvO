@@ -488,12 +488,19 @@ const legend = award
     if (segW <= 0) continue;
   
     languageSegments += `
-      <g>
-        <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />
-      </g>
+      <rect x="${segmentCursor}" y="${languageBarY}" width="${segW}" height="${languageBarH}" fill="${lang.color || themeColors.accent}" />
     `;
+  
+    // 给分段连接处加一个很窄的柔和过渡
+    if (i < topLanguages.length - 1) {
+      languageSegments += `
+        <rect x="${segmentCursor + segW - 1}" y="${languageBarY}" width="2" height="${languageBarH}" fill="rgba(255,255,255,0.10)" />
+      `;
+    }
+  
     segmentCursor += segW;
   }
+
 
   let languageLegend = '';
   let legendCursorX = languageBarX;
