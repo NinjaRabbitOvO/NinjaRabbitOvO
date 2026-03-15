@@ -550,7 +550,7 @@ const languageBlock = topLanguages.length
           stroke="url(#langBorderFlow)"
           stroke-width="1.2"
           filter="url(#langOuterGlow)"
-        >
+        />
 
         <!-- 外层暗壳 -->
         <rect
