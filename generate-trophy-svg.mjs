@@ -527,7 +527,7 @@ const legend = award
     legendCursorX += itemWidth;
   }
 
-    const footerY = legendY + 36;
+    const footerY = legendY + 32;
     const footerLineY = footerY - 12;
     const footerLeftX = languageBarX;
     const footerRightX = languageBarX + languageBarW;
