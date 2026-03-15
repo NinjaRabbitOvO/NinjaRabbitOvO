@@ -509,9 +509,50 @@
     
         <g>
           <text x="24" y="296" font-family="Verdana,Segoe UI,Arial" font-size="13" font-weight="700" fill="#c9d1d9">Languages</text>
-          <rect x="24" y="308" width="740" height="12" rx="6" fill="rgba(255,255,255,0.04)" stroke="#30363d" />
+          <rect
+            x="23"
+            y="307"
+            width="742"
+            height="14"
+            rx="7"
+            fill="none"
+            stroke="#30363d"
+            stroke-opacity="0.9"
+          />
+          <rect
+            x="24"
+            y="308"
+            width="740"
+            height="12"
+            rx="6"
+            fill="rgba(255,255,255,0.05)"
+          />
           <g clip-path="url(#langClip)">
-            <rect x="24" y="308" width="546" height="12" fill="#3572A5" /><rect x="570" y="308" width="109" height="12" fill="#f1e05a" /><rect x="679" y="308" width="35" height="12" fill="#e34c26" /><rect x="714" y="308" width="34" height="12" fill="#663399" /><rect x="748" y="308" width="12" height="12" fill="#555555" /><rect x="760" y="308" width="2" height="12" fill="#DA3434" />
+            
+      <g>
+        <rect x="24" y="308" width="546" height="12" fill="#3572A5" />
+      </g>
+    
+      <g>
+        <rect x="570" y="308" width="109" height="12" fill="#f1e05a" />
+      </g>
+    
+      <g>
+        <rect x="679" y="308" width="35" height="12" fill="#e34c26" />
+      </g>
+    
+      <g>
+        <rect x="714" y="308" width="34" height="12" fill="#663399" />
+      </g>
+    
+      <g>
+        <rect x="748" y="308" width="12" height="12" fill="#555555" />
+      </g>
+    
+      <g>
+        <rect x="760" y="308" width="4" height="12" fill="#DA3434" />
+      </g>
+    
           </g>
           
       <g>
