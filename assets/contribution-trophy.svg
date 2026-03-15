@@ -46,6 +46,11 @@
       <stop offset="55%" stop-color="white" stop-opacity="0" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
     </linearGradient>
+    <linearGradient id="langBlend" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
   </defs>
   
   <rect x="0.5" y="0.5" width="839" height="351" rx="16" fill="#0d1117" stroke="#30363d" />
@@ -420,7 +425,7 @@
     <rect x="738" y="118" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-12: 23 contribution(s)</title></rect>
     <rect x="738" y="132" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-13: 22 contribution(s)</title></rect>
     <rect x="738" y="146" width="11" height="11" rx="2" fill="#216e39" opacity="1"><title>2026-03-14: 25 contribution(s)</title></rect>
-    <rect x="752" y="62" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>2026-03-15: 0 contribution(s)</title></rect>
+    <rect x="752" y="62" width="11" height="11" rx="2" fill="#9be9a8" opacity="1"><title>2026-03-15: 1 contribution(s)</title></rect>
     <rect x="752" y="76" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="90" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
     <rect x="752" y="104" width="11" height="11" rx="2" fill="#161b22" opacity="0.95"><title>padding cell</title></rect>
@@ -446,6 +451,24 @@
     <rect x="122" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.16s" repeatCount="indefinite" /></rect>
     <rect x="136" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.32s" repeatCount="indefinite" /></rect>
     <rect x="150" y="146" width="11" height="11" rx="2" fill="url(#bronzeGrad)"><animate attributeName="opacity" values="0.82;1;0.82" dur="2.6s" begin="0.48s" repeatCount="indefinite" /></rect>
+    <rect x="598" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="612" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="626" y="132" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="640" y="62" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="640" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="640" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="640" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="640" y="118" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
+    <rect x="654" y="76" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.24s" repeatCount="indefinite" /></rect>
+    <rect x="654" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.36s" repeatCount="indefinite" /></rect>
+    <rect x="654" y="104" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0s" repeatCount="indefinite" /></rect>
+    <rect x="668" y="90" width="11" height="11" rx="2" fill="url(#streakGrad)"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" begin="0.12s" repeatCount="indefinite" /></rect>
     </g>
 
     
@@ -456,9 +479,9 @@
     <g>
       
     <g>
-      <rect x="94" y="176" width="242" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="90" y="176" width="242" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="215"
+        x="211"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
@@ -469,7 +492,7 @@
     </g>
 
     <g>
-      <rect x="350" y="176" width="151" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="346" y="176" width="159" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
         x="425.5"
         y="196"
@@ -478,20 +501,20 @@
         font-size="12"
         font-weight="700"
         fill="#ff7b72"
-      >🔥 0 Day Streak</text>
+      >🔥 15 Day Streak</text>
     </g>
 
     <g>
-      <rect x="515" y="176" width="176" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
+      <rect x="519" y="176" width="176" height="30" rx="15" fill="rgba(255,255,255,0.03)" stroke="#30363d" />
       <text
-        x="603"
+        x="607"
         y="196"
         text-anchor="middle"
         font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Verdana,Segoe UI,Arial"
         font-size="12"
         font-weight="700"
         fill="#58a6ff"
-      >⚡ Longest 14 Days</text>
+      >⚡ Longest 15 Days</text>
     </g>
     </g>
 
@@ -499,11 +522,11 @@
     <g>
       <rect x="24" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="40" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Active days</text>
-      <text x="40" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">18</text>
+      <text x="40" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">19</text>
 
       <rect x="213" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="229" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Total contributions</text>
-      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">362</text>
+      <text x="229" y="258" font-family="Verdana,Segoe UI,Arial" font-size="18" font-weight="700" fill="#c9d1d9">363</text>
 
       <rect x="402" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="418" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Current tier</text>
@@ -511,7 +534,7 @@
 
       <rect x="591" y="220" width="173" height="50" rx="10" fill="rgba(255,255,255,0.02)" stroke="#30363d" />
       <text x="607" y="238" font-family="Verdana,Segoe UI,Arial" font-size="12" fill="#8b949e">Last active</text>
-      <text x="607" y="258" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-14</text>
+      <text x="607" y="258" font-family="Verdana,Segoe UI,Arial" font-size="16" font-weight="700" fill="#c9d1d9">2026-03-15</text>
     </g>
     
       <g>
@@ -540,23 +563,23 @@
           
       <rect x="24" y="308" width="546" height="12" fill="#3572A5" />
     
-        <rect x="569" y="308" width="2" height="12" fill="rgba(255,255,255,0.10)" />
+        <rect x="566" y="308" width="8" height="12" fill="url(#langBlend)" />
       
       <rect x="570" y="308" width="109" height="12" fill="#f1e05a" />
     
-        <rect x="678" y="308" width="2" height="12" fill="rgba(255,255,255,0.10)" />
+        <rect x="675" y="308" width="8" height="12" fill="url(#langBlend)" />
       
       <rect x="679" y="308" width="35" height="12" fill="#e34c26" />
     
-        <rect x="713" y="308" width="2" height="12" fill="rgba(255,255,255,0.10)" />
+        <rect x="710" y="308" width="8" height="12" fill="url(#langBlend)" />
       
       <rect x="714" y="308" width="34" height="12" fill="#663399" />
     
-        <rect x="747" y="308" width="2" height="12" fill="rgba(255,255,255,0.10)" />
+        <rect x="744" y="308" width="8" height="12" fill="url(#langBlend)" />
       
       <rect x="748" y="308" width="12" height="12" fill="#555555" />
     
-        <rect x="759" y="308" width="2" height="12" fill="rgba(255,255,255,0.10)" />
+        <rect x="756" y="308" width="8" height="12" fill="url(#langBlend)" />
       
       <rect x="760" y="308" width="4" height="12" fill="#DA3434" />
     
