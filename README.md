@@ -1,6 +1,5 @@
-## Hi there 👋
+## 👋 Hi there, Welcome to my GitHub profile.
 
-Welcome to my GitHub profile.
 <!--
 **NinjaRabbitOvO/NinjaRabbitOvO** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
