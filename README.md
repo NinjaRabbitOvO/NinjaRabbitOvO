@@ -16,7 +16,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-## 开发工具 & 技术栈
+## Dev Tools & Tech Stack
 
 <p align="center">
   <a href="https://skillicons.dev">
